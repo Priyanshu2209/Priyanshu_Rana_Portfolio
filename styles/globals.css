@@ -3,9 +3,19 @@
 @tailwind utilities;
 
 /* Core styles */
-html {
+html, body {
   scroll-behavior: smooth;
-} 
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+#__next {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
@@ -143,4 +153,12 @@ html {
 .animate-gradient {
   background-size: 200% 200%;
   animation: gradient-shift 3s ease infinite;
+}
+
+/* Ensure each page section reserves space for the fixed nav and fills the viewport */
+section {
+  min-height: 100vh;
+  padding-top: 4rem; /* space for fixed nav (h-16) */
+  padding-bottom: 4rem;
+  scroll-margin-top: 4rem; /* prevents sections from being hidden under fixed header when using scrollIntoView */
 }
