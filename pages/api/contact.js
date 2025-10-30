@@ -1,6 +1,3 @@
-// api/contact.js
-// This file should be placed in your project's /api folder for Vercel serverless functions
-
 import nodemailer from 'nodemailer';
 
 export default async function handler(req, res) {
@@ -22,33 +19,17 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid email address' });
   }
 
-    // Check if environment variables are set
+  // Check if environment variables are set
   if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-    console.error('Email environment variables are not set', {
-      EMAIL_USER_SET: !!process.env.EMAIL_USER,
-      EMAIL_PASS_SET: !!process.env.EMAIL_PASS
-    });
+    console.error('Email environment variables are not set');
     return res.status(500).json({ 
-      error: 'Email service not configured properly',
+      error: 'Email service not configured. Please contact the administrator.',
       details: 'Missing environment variables'
     });
   }
 
-  console.log('API Route: Starting email process', {
-    timestamp: new Date().toISOString(),
-    sender: name,
-    senderEmail: email
-  });  try {
-    // Log environment variable status (safely)
-    console.log('Environment Check:', {
-      hasEmailUser: !!process.env.EMAIL_USER,
-      emailUserLength: process.env.EMAIL_USER?.length,
-      hasEmailPass: !!process.env.EMAIL_PASS,
-      emailPassLength: process.env.EMAIL_PASS?.length
-    });
-
+  try {
     // Create a transporter using Gmail
-    console.log('Creating email transporter...');
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -145,7 +126,8 @@ export default async function handler(req, res) {
   } catch (error) {
     console.error('Email sending error:', error);
     return res.status(500).json({ 
-      error: 'Failed to send message. Please try again later.' 
+      error: 'Failed to send message. Please try again later.',
+      details: error.message
     });
   }
 }
