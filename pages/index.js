@@ -100,44 +100,138 @@ export default function Portfolio() {
   };
 
   return (
-    <div className="min-h-screen text-amber-100 relative overflow-hidden vintage-map-bg">
-      {/* Background with vintage texture */}
-      <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-900 via-yellow-900 to-amber-950 opacity-95"></div>
+    <div 
+      className="min-h-screen bg-gradient-to-b from-amber-950 via-orange-900 to-slate-900 text-slate-100 relative"
+      style={{
+        scrollbarColor: 'rgba(249, 115, 22, 0.6) rgba(0, 0, 0, 0.3)',
+        scrollbarWidth: 'thin'
+      }}
+    >
+      <style>{`
+        ::-webkit-scrollbar {
+          width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+          background: rgba(0, 0, 0, 0.3);
+        }
+        ::-webkit-scrollbar-thumb {
+          background: rgba(249, 115, 22, 0.6);
+          border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+          background: rgba(249, 115, 22, 0.8);
+        }
+      `}</style>
+      {/* Background with sunset gradient */}
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-b from-orange-950 via-amber-900 to-slate-950"></div>
         
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-amber-800 opacity-20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-1/4 right-1/3 w-[500px] h-[500px] bg-yellow-800 opacity-15 rounded-full blur-3xl"></div>
-        </div>
-
-        {/* Vintage paper texture overlay */}
-        <div className="absolute inset-0 opacity-10 pointer-events-none" style={{
-          backgroundImage: `
-            repeating-linear-gradient(
-              0deg,
-              transparent,
-              transparent 2px,
-              #3d2817 2px,
-              #3d2817 4px
-            ),
-            repeating-linear-gradient(
-              90deg,
-              transparent,
-              transparent 1px,
-              #3d2817 1px,
-              #3d2817 2px
-            )
-          `
+        {/* Randomly positioned stars with varying sizes and twinkle effect */}
+        <svg className="absolute inset-0 w-full h-full" style={{opacity: 0.5}} preserveAspectRatio="none" viewBox="0 0 1000 1000\">
+          <defs>
+            <style>{`
+              @keyframes twinkle1 { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.8; } }
+              @keyframes twinkle2 { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.9; } }
+              @keyframes twinkle3 { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+              .star-tiny { animation: twinkle1 3s infinite; }
+              .star-small { animation: twinkle2 4s infinite; }
+              .star-medium { animation: twinkle3 5s infinite; }
+            `}</style>
+            <filter id="starGlow">
+              <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          
+          {/* Tiny stars - sparse */}
+          {Array.from({length: 80}).map((_, i) => {
+            const x = Math.random() * 1000;
+            const y = Math.random() * 1000;
+            const size = Math.random() * 0.8 + 0.4;
+            return (
+              <circle
+                key={`tiny-${i}`}
+                cx={x}
+                cy={y}
+                r={size}
+                fill="rgba(255,255,255,1)"
+                className="star-tiny"
+                filter="url(#starGlow)"
+              />
+            );
+          })}
+          
+          {/* Small-medium stars */}
+          {Array.from({length: 45}).map((_, i) => {
+            const x = Math.random() * 1000;
+            const y = Math.random() * 1000;
+            const size = Math.random() * 1.5 + 0.8;
+            return (
+              <circle
+                key={`small-${i}`}
+                cx={x}
+                cy={y}
+                r={size}
+                fill="rgba(255,230,150,1)"
+                className="star-small"
+                filter="url(#starGlow)"
+              />
+            );
+          })}
+          
+          {/* Medium stars - accent */}
+          {Array.from({length: 12}).map((_, i) => {
+            const x = Math.random() * 1000;
+            const y = Math.random() * 1000;
+            const size = Math.random() * 1.5 + 0.8;
+            return (
+              <circle
+                key={`medium-${i}`}
+                cx={x}
+                cy={y}
+                r={size}
+                fill="rgba(255,250,200,1)"
+                className="star-medium"
+                filter="url(#starGlow)"
+              />
+            );
+          })}
+          
+          {/* Larger bright accent stars */}
+          {Array.from({length: 5}).map((_, i) => {
+            const x = Math.random() * 1000;
+            const y = Math.random() * 1000;
+            const size = Math.random() * 1.8 + 1;
+            return (
+              <circle
+                key={`large-${i}`}
+                cx={x}
+                cy={y}
+                r={size}
+                fill="rgba(255,200,100,1)"
+                opacity={1}
+                filter="url(#starGlow)"
+              />
+            );
+          })}
+        </svg>
+        
+        {/* Sunset gradient overlay with warm tones */}
+        <div className="absolute inset-0 pointer-events-none" style={{
+          background: 'radial-gradient(ellipse 120% 120% at 50% 20%, rgba(255, 140, 60, 0.15) 0%, transparent 40%), radial-gradient(ellipse 100% 100% at 50% 80%, rgba(100, 50, 20, 0.12) 0%, transparent 100%)'
         }}></div>
       </div>
 
       {/* Main content */}
       <div className="relative z-10">
         {/* Navigation */}
-        <nav className="fixed top-0 w-full bg-amber-900 bg-opacity-70 backdrop-blur-lg z-50 border-b border-amber-700 border-opacity-40 shadow-lg">
+        <nav className="fixed top-0 w-full bg-gradient-to-b from-orange-950 to-orange-950 bg-opacity-90 backdrop-blur-lg z-50 border-b border-amber-600 border-opacity-40 shadow-2xl">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
-              <div className="text-xl font-bold bg-gradient-to-r from-amber-100 to-yellow-100 bg-clip-text text-transparent">
+              <div className="text-2xl font-bold bg-gradient-to-r from-amber-300 to-orange-300 bg-clip-text text-transparent font-serif">
                 Priyanshu Rana
               </div>
               
@@ -146,8 +240,8 @@ export default function Portfolio() {
                   <button
                     key={section}
                     onClick={() => scrollToSection(section)}
-                    className={`capitalize transition-all duration-300 ${
-                      activeSection === section ? 'text-amber-100 font-semibold' : 'text-amber-200 hover:text-amber-100'
+                    className={`capitalize transition-all duration-300 font-medium text-sm tracking-wide ${
+                      activeSection === section ? 'text-orange-300 border-b-2 border-orange-400 pb-1' : 'text-slate-200 hover:text-orange-300'
                     }`}
                   >
                     {section}
@@ -155,20 +249,20 @@ export default function Portfolio() {
                 ))}
               </div>
 
-              <button className="md:hidden text-amber-200" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              <button className="md:hidden text-orange-400" onClick={() => setIsMenuOpen(!isMenuOpen)}>
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
             </div>
           </div>
 
           {isMenuOpen && (
-            <div className="md:hidden bg-amber-900 bg-opacity-95 backdrop-blur-md border-t border-amber-700 border-opacity-40">
+            <div className="md:hidden bg-gradient-to-b from-orange-900 to-orange-950 bg-opacity-95 backdrop-blur-md border-t border-amber-600 border-opacity-40">
               <div className="px-4 py-4 space-y-3">
                 {['home', 'about', 'experience', 'projects', 'skills', 'contact'].map((section) => (
                   <button
                     key={section}
                     onClick={() => scrollToSection(section)}
-                    className="block w-full text-left capitalize py-2 text-amber-200 hover:text-amber-100 transition-colors"
+                    className="block w-full text-left capitalize py-2 text-slate-200 hover:text-orange-300 transition-colors text-sm"
                   >
                     {section}
                   </button>
@@ -179,70 +273,74 @@ export default function Portfolio() {
         </nav>
 
         {/* Home Section */}
-        <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-16">
+        <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-16 bg-gradient-to-b from-orange-950 via-amber-900 to-slate-900">
           <div className="text-center max-w-4xl mx-auto">
-            <div className="w-36 h-36 mx-auto mb-8 rounded-full bg-gradient-to-br from-amber-200 via-yellow-100 to-orange-200 flex items-center justify-center text-6xl font-bold shadow-2xl border-4 border-amber-300 border-opacity-40 candle-glow">
-              PR
+            <div className="inline-block mb-12 group">
+              <div className="w-56 h-56 rounded-full bg-gradient-to-br from-orange-500 via-amber-400 to-orange-600 flex items-center justify-center text-6xl font-bold shadow-2xl border-4 border-orange-300 border-opacity-70 relative transform group-hover:scale-105 transition-transform duration-300" style={{boxShadow: '0 0 60px rgba(249, 115, 22, 0.7), inset 0 0 25px rgba(255, 255, 255, 0.25), 0 15px 40px rgba(0, 0, 0, 0.5)'}}>
+                <span className="text-white font-serif tracking-wider drop-shadow-lg">PR</span>
+              </div>
             </div>
-            <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-amber-100 via-yellow-50 to-orange-100 bg-clip-text text-transparent">
+            <h1 className="text-7xl md:text-8xl font-bold mb-4 bg-gradient-to-r from-amber-100 via-orange-200 to-amber-100 bg-clip-text text-transparent font-serif leading-tight drop-shadow-2xl">
               Priyanshu Rana
             </h1>
-            <p className="text-2xl md:text-4xl text-amber-100 mb-8 font-light">
-              Database Developer & Software Engineer
-            </p>
-            <p className="text-lg md:text-xl text-amber-200 mb-12 max-w-2xl mx-auto leading-relaxed">
-              Passionate developer specializing in database systems, web development, and software engineering. 
-              Building efficient solutions with modern technologies.
+            <p className="text-2xl md:text-3xl text-orange-200 mb-2 font-light tracking-wide font-sans drop-shadow-md">Full Stack Developer</p>
+            <p className="text-lg md:text-xl text-orange-100 mb-12 max-w-2xl mx-auto leading-relaxed font-sans font-light drop-shadow-md">
+              Building elegant, scalable solutions with modern technologies. Specialized in database architecture, cloud infrastructure, and enterprise software development.
             </p>
             <div className="flex justify-center space-x-6 mb-12">
-              <a href="mailto:priyanshurana2228@gmail.com" className="p-4 bg-amber-700 bg-opacity-30 hover:bg-opacity-50 rounded-full transition-all duration-300 transform hover:scale-110 border border-amber-500 border-opacity-40 backdrop-blur-sm shadow-lg">
-                <Mail size={28} className="text-amber-200" />
+              <a href="mailto:priyanshurana2228@gmail.com" className="p-4 bg-gradient-to-br from-orange-600 to-amber-700 hover:from-orange-500 hover:to-amber-600 rounded-lg transition-all duration-300 transform hover:scale-110 hover:-translate-y-2 border-2 border-orange-300 border-opacity-80 shadow-lg backdrop-blur-sm" style={{boxShadow: '0 0 30px rgba(249, 115, 22, 0.4)'}}>
+                <Mail size={28} className="text-white" />
               </a>
-              <a href="https://linkedin.com/in/priyanshu-rana-230a152a4" target="_blank" rel="noopener noreferrer" className="p-4 bg-amber-700 bg-opacity-30 hover:bg-opacity-50 rounded-full transition-all duration-300 transform hover:scale-110 border border-amber-500 border-opacity-40 backdrop-blur-sm shadow-lg">
-                <Linkedin size={28} className="text-amber-200" />
+              <a href="https://linkedin.com/in/priyanshu-rana-230a152a4" target="_blank" rel="noopener noreferrer" className="p-4 bg-gradient-to-br from-orange-600 to-amber-700 hover:from-orange-500 hover:to-amber-600 rounded-lg transition-all duration-300 transform hover:scale-110 hover:-translate-y-2 border-2 border-orange-300 border-opacity-80 shadow-lg backdrop-blur-sm" style={{boxShadow: '0 0 30px rgba(249, 115, 22, 0.4)'}}>
+                <Linkedin size={28} className="text-white" />
               </a>
-              <a href="https://github.com/Priyanshu2209" target="_blank" rel="noopener noreferrer" className="p-4 bg-amber-700 bg-opacity-30 hover:bg-opacity-50 rounded-full transition-all duration-300 transform hover:scale-110 border border-amber-500 border-opacity-40 backdrop-blur-sm shadow-lg">
-                <Github size={28} className="text-amber-200" />
+              <a href="https://github.com/Priyanshu2209" target="_blank" rel="noopener noreferrer" className="p-4 bg-gradient-to-br from-orange-600 to-amber-700 hover:from-orange-500 hover:to-amber-600 rounded-lg transition-all duration-300 transform hover:scale-110 hover:-translate-y-2 border-2 border-orange-300 border-opacity-80 shadow-lg backdrop-blur-sm" style={{boxShadow: '0 0 30px rgba(249, 115, 22, 0.4)'}}>
+                <Github size={28} className="text-white" />
               </a>
             </div>
-            <button onClick={() => scrollToSection('contact')} className="px-10 py-4 bg-gradient-to-r from-amber-700 to-yellow-700 hover:from-amber-600 hover:to-yellow-600 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-amber-50">
-              Get In Touch
-            </button>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <button onClick={() => scrollToSection('projects')} className="px-10 py-4 bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 shadow-xl text-white border-2 border-orange-300 border-opacity-60 backdrop-blur-sm" style={{boxShadow: '0 0 40px rgba(249, 115, 22, 0.5)'}}>View My Work</button>
+              <button onClick={() => scrollToSection('contact')} className="px-10 py-4 bg-slate-800 bg-opacity-60 hover:bg-opacity-80 border-2 border-orange-500 border-opacity-80 hover:border-opacity-100 rounded-lg font-bold text-lg transition-all text-orange-200 hover:text-orange-100 backdrop-blur-sm transform hover:scale-105 hover:-translate-y-2">Get In Touch</button>
+            </div>
           </div>
         </section>
 
         {/* About Section */}
         <section id="about" className="py-24 px-4">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-5xl font-bold mb-16 text-center bg-gradient-to-r from-amber-100 to-yellow-100 bg-clip-text text-transparent">
+            <h2 className="text-6xl font-bold mb-16 text-center bg-gradient-to-r from-orange-300 to-amber-300 bg-clip-text text-transparent font-serif">
               About Me
             </h2>
-            <div className="bg-amber-800 bg-opacity-30 backdrop-blur-md p-10 rounded-3xl border border-amber-700 border-opacity-50 shadow-2xl">
-              <p className="text-amber-100 text-lg leading-relaxed mb-6">
+            <div className="bg-slate-800 bg-opacity-30 backdrop-blur-md p-12 rounded-xl border border-amber-600 border-opacity-30 shadow-2xl" style={{boxShadow: '0 0 40px rgba(249, 115, 22, 0.08)'}}>
+              <p className="text-slate-100 text-lg leading-relaxed mb-6">
                 I&apos;m a dedicated Computer Programming and Analysis student at Seneca Polytechnic with a strong foundation 
                 in database systems and software development. My journey in tech began with a Diploma in Computer Engineering, 
                 and I&apos;ve since gained valuable industry experience as a Database Intern at Tata Consultancy Services.
               </p>
-              <p className="text-amber-100 text-lg leading-relaxed mb-8">
-                I specialize in designing and optimizing SQL databases, building full-stack web applications, and creating 
+              <p className="text-slate-200 text-lg leading-relaxed mb-8">
+                I specialize in designing and optimizing SQL databases, building full-stack web applications, and creating
                 efficient data management solutions. I&apos;m passionate about clean code, performance optimization, and solving 
                 complex technical challenges.
               </p>
               <div className="grid md:grid-cols-2 gap-8 mt-12">
-                <div className="flex items-start space-x-4 bg-amber-700 bg-opacity-20 p-6 rounded-2xl border border-amber-600 border-opacity-40">
-                  <GraduationCap className="text-amber-200 mt-1 flex-shrink-0" size={32} />
+                <div className="flex items-start space-x-4 bg-slate-800 bg-opacity-50 p-6 rounded-lg border border-amber-600 border-opacity-30">
+                  <GraduationCap className="text-orange-400 mt-1 flex-shrink-0" size={32} />
                   <div>
-                    <h3 className="font-bold text-amber-100 mb-2 text-xl">Education</h3>
-                    <p className="text-amber-200">Computer Programming & Analysis</p>
-                    <p className="text-amber-300 text-sm">Seneca Polytechnic (2024-2026)</p>
+                    <h3 className="font-bold text-orange-300 mb-2 text-lg">Education</h3>
+                    <p className="text-slate-100 font-semibold">Computer Programming & Analysis</p>
+                    <p className="text-slate-400 text-sm mb-2">Seneca Polytechnic (2024-2026)</p>
+                    <p className="text-slate-100 font-semibold text-sm">Diploma in Computer Engineering</p>
+                    <p className="text-slate-400 text-sm">Completed 2023</p>
                   </div>
                 </div>
-                <div className="flex items-start space-x-4 bg-yellow-700 bg-opacity-20 p-6 rounded-2xl border border-yellow-600 border-opacity-40">
-                  <Briefcase className="text-yellow-100 mt-1 flex-shrink-0" size={32} />
+                <div className="flex items-start space-x-4 bg-slate-800 bg-opacity-50 p-6 rounded-lg border border-amber-600 border-opacity-30">
+                  <Briefcase className="text-orange-400 mt-1 flex-shrink-0" size={32} />
                   <div>
-                    <h3 className="font-bold text-yellow-100 mb-2 text-xl">Experience</h3>
-                    <p className="text-yellow-200">Database Intern</p>
-                    <p className="text-yellow-300 text-sm">Tata Consultancy Services</p>
+                    <h3 className="font-bold text-orange-300 mb-2 text-lg">Experience</h3>
+                    <p className="text-slate-100 font-semibold">Database Intern</p>
+                    <p className="text-slate-400 text-sm mb-2">Tata Consultancy Services</p>
+                    <p className="text-slate-100 font-semibold text-sm">Volunteer Mentor</p>
+                    <p className="text-slate-400 text-sm">Tech Peer Mentorship Program</p>
                   </div>
                 </div>
               </div>
@@ -251,54 +349,54 @@ export default function Portfolio() {
         </section>
 
         {/* Experience Section */}
-        <section id="experience" className="py-24 px-4">
+        <section id="experience" className="py-24 px-4 bg-transparent">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-5xl font-bold mb-16 text-center bg-gradient-to-r from-amber-100 to-yellow-100 bg-clip-text text-transparent">
+            <h2 className="text-6xl md:text-7xl font-bold mb-20 text-center bg-gradient-to-r from-orange-300 to-amber-300 bg-clip-text text-transparent font-serif">
               Experience
             </h2>
             <div className="space-y-8">
-              <div className="bg-amber-800 bg-opacity-30 backdrop-blur-md p-10 rounded-3xl border border-amber-700 border-opacity-50 shadow-2xl hover:border-opacity-70 transition-all duration-300">
+              <div className="bg-slate-800 bg-opacity-40 backdrop-blur-lg p-10 rounded-2xl border-2 border-orange-500 border-opacity-40 shadow-lg hover:border-opacity-70 transition-all duration-300" style={{boxShadow: '0 0 30px rgba(249, 115, 22, 0.1)'}}>
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-6">
                   <div>
-                    <h3 className="text-3xl font-bold text-amber-100 mb-2">Database Intern</h3>
-                    <p className="text-yellow-100 text-xl">Tata Consultancy Services (TCS)</p>
-                    <p className="text-amber-300">Ahmedabad, India</p>
+                    <h3 className="text-3xl font-bold text-orange-200 mb-2">Database Intern</h3>
+                    <p className="text-orange-300 text-lg">Tata Consultancy Services (TCS)</p>
+                    <p className="text-slate-300">Ahmedabad, India</p>
                   </div>
-                  <span className="text-amber-300 mt-2 sm:mt-0">Jan 2022 – Jun 2022</span>
+                  <span className="text-slate-300 mt-2 sm:mt-0 font-light">Jan 2022 – Jun 2022</span>
                 </div>
-                <ul className="space-y-4 text-amber-100 text-lg">
+                <ul className="space-y-4 text-slate-100 text-lg">
                   <li className="flex items-start">
-                    <span className="text-amber-200 mr-3 text-2xl">•</span>
+                    <span className="text-orange-400 mr-3 text-xl">→</span>
                     <span>Designed and optimized SQL databases for internal business applications, improving query performance by 25%</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-amber-200 mr-3 text-2xl">•</span>
+                    <span className="text-orange-400 mr-3 text-xl">→</span>
                     <span>Created data validation and cleanup scripts to ensure accuracy and consistency across datasets</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-amber-200 mr-3 text-2xl">•</span>
+                    <span className="text-orange-400 mr-3 text-xl">→</span>
                     <span>Assisted in developing database reports and ER diagrams for cross-departmental data integration</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-amber-200 mr-3 text-2xl">•</span>
+                    <span className="text-orange-400 mr-3 text-xl">→</span>
                     <span>Collaborated with developers to streamline backend data pipelines and automate reporting</span>
                   </li>
                 </ul>
               </div>
 
-              <div className="bg-yellow-800 bg-opacity-30 backdrop-blur-md p-10 rounded-3xl border border-yellow-700 border-opacity-50 shadow-2xl hover:border-opacity-70 transition-all duration-300">
+              <div className="bg-slate-800 bg-opacity-40 backdrop-blur-lg p-10 rounded-2xl border-2 border-orange-500 border-opacity-40 shadow-lg hover:border-opacity-70 transition-all duration-300" style={{boxShadow: '0 0 30px rgba(249, 115, 22, 0.1)'}}>
                 <div className="mb-6">
-                  <h3 className="text-3xl font-bold text-yellow-100 mb-2">Volunteer Mentor</h3>
-                  <p className="text-amber-100 text-xl">Tech Peer Mentorship Program</p>
-                  <p className="text-amber-300">Seneca Polytechnic</p>
+                  <h3 className="text-3xl font-bold text-orange-200 mb-2">Volunteer Mentor</h3>
+                  <p className="text-orange-300 text-lg">Tech Peer Mentorship Program</p>
+                  <p className="text-slate-300">Seneca Polytechnic</p>
                 </div>
-                <ul className="space-y-4 text-yellow-100 text-lg">
+                <ul className="space-y-4 text-slate-100 text-lg">
                   <li className="flex items-start">
-                    <span className="text-yellow-200 mr-3 text-2xl">•</span>
+                    <span className="text-orange-400 mr-3 text-xl">→</span>
                     <span>Mentored first-year students in programming fundamentals and academic skills</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-yellow-200 mr-3 text-2xl">•</span>
+                    <span className="text-orange-400 mr-3 text-xl">→</span>
                     <span>Facilitated collaborative coding sessions and supported debugging workshops</span>
                   </li>
                 </ul>
@@ -308,49 +406,47 @@ export default function Portfolio() {
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="py-24 px-4">
+        <section id="projects" className="py-32 px-4 bg-transparent">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-5xl font-bold mb-16 text-center bg-gradient-to-r from-amber-100 to-yellow-100 bg-clip-text text-transparent">
+            <h2 className="text-6xl md:text-7xl font-bold mb-20 text-center bg-gradient-to-r from-orange-300 to-amber-300 bg-clip-text text-transparent font-serif">
               Featured Projects
             </h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-amber-800 bg-opacity-30 backdrop-blur-md p-10 rounded-3xl border border-amber-700 border-opacity-50 shadow-2xl hover:border-opacity-70 transition-all duration-300 transform hover:scale-105">
+            <div className="grid md:grid-cols-2 gap-10">
+              <div className="group bg-slate-800 bg-opacity-40 backdrop-blur-lg p-8 rounded-2xl border-2 border-orange-500 border-opacity-40 shadow-lg hover:border-opacity-70 transition-all duration-300 transform hover:scale-105" style={{boxShadow: '0 0 30px rgba(249, 115, 22, 0.1)'}}>
                 <div className="flex items-center justify-between mb-6">
-                  <Code className="text-amber-200" size={40} />
-                  <a href="https://github.com/Priyanshu2209/Blood_bank_system_database" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:text-amber-100 transition-colors">
+                  <Code className="text-orange-400 group-hover:scale-110 transition-transform" size={32} />
+                  <a href="https://github.com/Priyanshu2209/Blood_bank_system_database" target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:text-orange-300 transition-colors transform hover:scale-110">
                     <ExternalLink size={28} />
                   </a>
                 </div>
-                <h3 className="text-3xl font-bold text-amber-100 mb-4">Blood Bank Management System</h3>
-                <p className="text-amber-200 mb-6 text-lg">
-                  Comprehensive SQL database system for managing blood donations with advanced queries, 
-                  ER diagrams, and efficient data management framework.
+                <h3 className="text-2xl font-bold text-orange-200 mb-4">Blood Bank Management</h3>
+                <p className="text-slate-300 mb-6 text-lg leading-relaxed">
+                  Comprehensive SQL database system for managing blood donations with advanced queries, ER diagrams, and efficient data management framework.
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  <span className="px-4 py-2 bg-amber-700 bg-opacity-30 text-amber-100 rounded-full border border-amber-600 border-opacity-40">SQL</span>
-                  <span className="px-4 py-2 bg-amber-700 bg-opacity-30 text-amber-100 rounded-full border border-amber-600 border-opacity-40">MySQL</span>
-                  <span className="px-4 py-2 bg-amber-700 bg-opacity-30 text-amber-100 rounded-full border border-amber-600 border-opacity-40">Database Design</span>
+                  <span className="px-4 py-2 bg-slate-700 bg-opacity-60 text-orange-200 rounded-full text-sm font-medium border border-orange-500 border-opacity-60 hover:border-opacity-100 transition-all cursor-default">SQL</span>
+                  <span className="px-4 py-2 bg-slate-700 bg-opacity-60 text-orange-200 rounded-full text-sm font-medium border border-orange-500 border-opacity-60 hover:border-opacity-100 transition-all cursor-default">MySQL</span>
+                  <span className="px-4 py-2 bg-slate-700 bg-opacity-60 text-orange-200 rounded-full text-sm font-medium border border-orange-500 border-opacity-60 hover:border-opacity-100 transition-all cursor-default">Database Design</span>
                 </div>
               </div>
 
-              <div className="bg-yellow-800 bg-opacity-30 backdrop-blur-md p-10 rounded-3xl border border-yellow-700 border-opacity-50 shadow-2xl hover:border-opacity-70 transition-all duration-300 transform hover:scale-105">
+              <div className="group bg-slate-800 bg-opacity-40 backdrop-blur-lg p-8 rounded-2xl border-2 border-orange-500 border-opacity-40 shadow-lg hover:border-opacity-70 transition-all duration-300 transform hover:scale-105" style={{boxShadow: '0 0 30px rgba(249, 115, 22, 0.1)'}}>
                 <div className="flex items-center justify-between mb-6">
-                  <Code className="text-yellow-200" size={40} />
-                  <div className="text-amber-600">
+                  <Code className="text-orange-400 group-hover:scale-110 transition-transform" size={32} />
+                  <a href="https://github.com/Priyanshu2209/It-s_show_time" target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:text-orange-300 transition-colors transform hover:scale-110">
                     <ExternalLink size={28} />
-                  </div>
+                  </a>
                 </div>
-                <h3 className="text-3xl font-bold text-yellow-100 mb-4">Online Movie Ticket Booking</h3>
-                <p className="text-yellow-200 mb-6 text-lg">
-                  Full-stack web application with responsive frontend, PHP backend, and MySQL integration 
-                  for real-time seat booking, user authentication, and email confirmations.
+                <h3 className="text-2xl font-bold text-orange-200 mb-4">Movie Ticket Booking</h3>
+                <p className="text-slate-100 mb-6 text-lg leading-relaxed">
+                  Full-stack web application with responsive frontend, PHP backend, and MySQL integration for real-time seat booking, user authentication, and email confirmations.
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  <span className="px-4 py-2 bg-yellow-700 bg-opacity-30 text-yellow-100 rounded-full border border-yellow-600 border-opacity-40">HTML5</span>
-                  <span className="px-4 py-2 bg-yellow-700 bg-opacity-30 text-yellow-100 rounded-full border border-yellow-600 border-opacity-40">CSS3</span>
-                  <span className="px-4 py-2 bg-yellow-700 bg-opacity-30 text-yellow-100 rounded-full border border-yellow-600 border-opacity-40">JavaScript</span>
-                  <span className="px-4 py-2 bg-yellow-700 bg-opacity-30 text-yellow-100 rounded-full border border-yellow-600 border-opacity-40">PHP</span>
-                  <span className="px-4 py-2 bg-yellow-700 bg-opacity-30 text-yellow-100 rounded-full border border-yellow-600 border-opacity-40">MySQL</span>
+                  <span className="px-4 py-2 bg-slate-700 bg-opacity-60 text-orange-200 rounded-full text-sm font-medium border border-orange-500 border-opacity-60 hover:border-opacity-100 transition-all cursor-default">HTML5</span>
+                  <span className="px-4 py-2 bg-slate-700 bg-opacity-60 text-orange-200 rounded-full text-sm font-medium border border-orange-500 border-opacity-60 hover:border-opacity-100 transition-all cursor-default">CSS3</span>
+                  <span className="px-4 py-2 bg-slate-700 bg-opacity-60 text-orange-200 rounded-full text-sm font-medium border border-orange-500 border-opacity-60 hover:border-opacity-100 transition-all cursor-default">JavaScript</span>
+                  <span className="px-4 py-2 bg-slate-700 bg-opacity-60 text-orange-200 rounded-full text-sm font-medium border border-orange-500 border-opacity-60 hover:border-opacity-100 transition-all cursor-default">PHP</span>
+                  <span className="px-4 py-2 bg-slate-700 bg-opacity-60 text-orange-200 rounded-full text-sm font-medium border border-orange-500 border-opacity-60 hover:border-opacity-100 transition-all cursor-default">MySQL</span>
                 </div>
               </div>
             </div>
@@ -358,59 +454,59 @@ export default function Portfolio() {
         </section>
 
         {/* Skills Section */}
-        <section id="skills" className="py-24 px-4">
+        <section id="skills" className="py-32 px-4 bg-transparent">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-5xl font-bold mb-16 text-center bg-gradient-to-r from-amber-100 to-yellow-100 bg-clip-text text-transparent">
-              Skills & Technologies
+            <h2 className="text-6xl md:text-7xl font-bold mb-20 text-center bg-gradient-to-r from-orange-300 to-amber-300 bg-clip-text text-transparent font-serif">
+              Skills & Expertise
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-amber-800 bg-opacity-30 backdrop-blur-md p-8 rounded-3xl border border-amber-700 border-opacity-50 shadow-2xl">
-                <h3 className="text-2xl font-bold text-amber-100 mb-6 flex items-center">
-                  <Code className="mr-3" size={32} />
+              <div className="bg-slate-800 bg-opacity-40 backdrop-blur-lg p-8 rounded-2xl border-2 border-orange-500 border-opacity-40 shadow-lg hover:border-opacity-70 transition-all duration-300 transform hover:scale-105" style={{boxShadow: '0 0 30px rgba(249, 115, 22, 0.1)'}}>
+                <h3 className="text-2xl font-bold text-orange-200 mb-6 flex items-center">
+                  <Code className="mr-3 text-orange-400" size={32} />
                   Programming
                 </h3>
                 <div className="flex flex-wrap gap-3">
                   {['Python', 'Java', 'C', 'C++', 'Kotlin'].map((skill) => (
-                    <span key={skill} className="px-4 py-2 bg-amber-700 bg-opacity-30 text-amber-100 rounded-full border border-amber-600 border-opacity-40">
+                    <span key={skill} className="px-4 py-2 bg-slate-700 bg-opacity-50 text-orange-200 rounded-full text-sm font-medium border border-orange-500 border-opacity-50 hover:border-opacity-100 hover:bg-opacity-80 transition-all cursor-default">
                       {skill}
                     </span>
                   ))}
                 </div>
               </div>
 
-              <div className="bg-yellow-800 bg-opacity-30 backdrop-blur-md p-8 rounded-3xl border border-yellow-700 border-opacity-50 shadow-2xl">
-                <h3 className="text-2xl font-bold text-yellow-100 mb-6 flex items-center">
-                  <Database className="mr-3" size={32} />
+              <div className="bg-slate-800 bg-opacity-40 backdrop-blur-lg p-8 rounded-2xl border-2 border-orange-500 border-opacity-40 shadow-lg hover:border-opacity-70 transition-all duration-300 transform hover:scale-105" style={{boxShadow: '0 0 30px rgba(249, 115, 22, 0.1)'}}>
+                <h3 className="text-2xl font-bold text-orange-200 mb-6 flex items-center">
+                  <Database className="mr-3 text-orange-400" size={32} />
                   Databases
                 </h3>
                 <div className="flex flex-wrap gap-3">
                   {['MySQL', 'Oracle SQL', 'MongoDB', 'DB2'].map((skill) => (
-                    <span key={skill} className="px-4 py-2 bg-yellow-700 bg-opacity-30 text-yellow-100 rounded-full border border-yellow-600 border-opacity-40">
+                    <span key={skill} className="px-4 py-2 bg-slate-700 bg-opacity-50 text-orange-200 rounded-full text-sm font-medium border border-orange-500 border-opacity-50 hover:border-opacity-100 hover:bg-opacity-80 transition-all cursor-default">
                       {skill}
                     </span>
                   ))}
                 </div>
               </div>
 
-              <div className="bg-orange-800 bg-opacity-30 backdrop-blur-md p-8 rounded-3xl border border-orange-700 border-opacity-50 shadow-2xl">
-                <h3 className="text-2xl font-bold text-orange-100 mb-6 flex items-center">
-                  <Award className="mr-3" size={32} />
+              <div className="bg-slate-800 bg-opacity-40 backdrop-blur-lg p-8 rounded-2xl border-2 border-orange-500 border-opacity-40 shadow-lg hover:border-opacity-70 transition-all duration-300 transform hover:scale-105" style={{boxShadow: '0 0 30px rgba(249, 115, 22, 0.1)'}}>
+                <h3 className="text-2xl font-bold text-orange-200 mb-6 flex items-center">
+                  <Award className="mr-3 text-orange-400" size={32} />
                   Web Development
                 </h3>
                 <div className="flex flex-wrap gap-3">
                   {['HTML5', 'CSS3', 'JavaScript', 'PHP', 'Node.js'].map((skill) => (
-                    <span key={skill} className="px-4 py-2 bg-orange-700 bg-opacity-30 text-orange-100 rounded-full border border-orange-600 border-opacity-40">
+                    <span key={skill} className="px-4 py-2 bg-slate-700 bg-opacity-50 text-orange-200 rounded-full text-sm font-medium border border-orange-500 border-opacity-50 hover:border-opacity-100 hover:bg-opacity-80 transition-all cursor-default">
                       {skill}
                     </span>
                   ))}
                 </div>
               </div>
 
-              <div className="bg-amber-700 bg-opacity-30 backdrop-blur-md p-8 rounded-3xl border border-amber-600 border-opacity-50 shadow-2xl md:col-span-2 lg:col-span-3">
-                <h3 className="text-2xl font-bold text-amber-100 mb-6">Tools & Platforms</h3>
+              <div className="bg-slate-800 bg-opacity-40 backdrop-blur-lg p-8 rounded-2xl border-2 border-orange-500 border-opacity-40 shadow-lg hover:border-opacity-70 transition-all duration-300 transform hover:scale-105 md:col-span-2 lg:col-span-3" style={{boxShadow: '0 0 30px rgba(249, 115, 22, 0.1)'}}>
+                <h3 className="text-2xl font-bold text-orange-200 mb-6">Tools & Platforms</h3>
                 <div className="flex flex-wrap gap-3">
                   {['Git/GitHub', 'IServer', 'VS Code', 'Eclipse', 'Database Design', 'Data Analysis', 'Debugging'].map((skill) => (
-                    <span key={skill} className="px-4 py-2 bg-amber-700 bg-opacity-30 text-amber-100 rounded-full border border-amber-600 border-opacity-40">
+                    <span key={skill} className="px-4 py-2 bg-slate-700 bg-opacity-50 text-orange-200 rounded-full text-sm font-medium border border-orange-500 border-opacity-50 hover:border-opacity-100 hover:bg-opacity-80 transition-all cursor-default">
                       {skill}
                     </span>
                   ))}
@@ -423,46 +519,46 @@ export default function Portfolio() {
         {/* Contact Section */}
         <section id="contact" className="py-24 px-4">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-5xl font-bold mb-16 text-center bg-gradient-to-r from-amber-100 to-yellow-100 bg-clip-text text-transparent">
+            <h2 className="text-6xl font-bold mb-16 text-center bg-gradient-to-r from-orange-300 to-amber-300 bg-clip-text text-transparent font-serif">
               Get In Touch
             </h2>
-            <div className="bg-amber-800 bg-opacity-30 backdrop-blur-md p-10 rounded-3xl border border-amber-700 border-opacity-50 shadow-2xl">
-              <p className="text-amber-100 text-center mb-10 text-lg">
+            <div className="bg-slate-800 bg-opacity-50 backdrop-blur-lg p-12 rounded-2xl border border-orange-500 border-opacity-30 shadow-2xl" style={{boxShadow: '0 0 50px rgba(249, 115, 22, 0.15)'}}>
+              <p className="text-slate-100 text-center mb-10 text-lg font-light">
                 I&apos;m always open to new opportunities and collaborations. Feel free to reach out!
               </p>
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="block text-amber-100 mb-2 text-lg">Name</label>
+                  <label className="block text-orange-300 mb-3 text-lg font-medium">Name</label>
                   <input
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-6 py-4 bg-amber-900 bg-opacity-40 border border-amber-700 border-opacity-50 rounded-xl focus:outline-none focus:border-amber-400 text-amber-50 text-lg backdrop-blur-sm"
+                    className="w-full px-6 py-4 bg-slate-800 bg-opacity-50 border border-amber-600 border-opacity-30 rounded-lg focus:outline-none focus:border-orange-400 focus:border-opacity-100 text-slate-100 text-lg backdrop-blur-sm placeholder-slate-500 transition-all hover:border-opacity-60"
                     placeholder="Your Name"
                     required
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-amber-100 mb-2 text-lg">Email</label>
+                  <label className="block text-orange-300 mb-3 text-lg font-medium">Email</label>
                   <input
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-6 py-4 bg-amber-900 bg-opacity-40 border border-amber-700 border-opacity-50 rounded-xl focus:outline-none focus:border-amber-400 text-amber-50 text-lg backdrop-blur-sm"
+                    className="w-full px-6 py-4 bg-slate-800 bg-opacity-50 border border-amber-600 border-opacity-30 rounded-lg focus:outline-none focus:border-orange-400 focus:border-opacity-100 text-slate-100 text-lg backdrop-blur-sm placeholder-slate-500 transition-all hover:border-opacity-60"
                     placeholder="your.email@example.com"
                     required
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-amber-100 mb-2 text-lg">Message</label>
+                  <label className="block text-orange-300 mb-3 text-lg font-medium">Message</label>
                   <textarea
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     rows={6}
-                    className="w-full px-6 py-4 bg-amber-900 bg-opacity-40 border border-amber-700 border-opacity-50 rounded-xl focus:outline-none focus:border-amber-400 text-amber-50 text-lg backdrop-blur-sm"
+                    className="w-full px-6 py-4 bg-slate-800 bg-opacity-50 border border-amber-600 border-opacity-30 rounded-lg focus:outline-none focus:border-orange-400 focus:border-opacity-100 text-slate-100 text-lg backdrop-blur-sm placeholder-slate-500 transition-all hover:border-opacity-60"
                     placeholder="Your message..."
                     required
                   />
@@ -471,29 +567,29 @@ export default function Portfolio() {
                 <button
                   type="submit"
                   disabled={formStatus === 'sending'}
-                  className="w-full px-8 py-4 bg-gradient-to-r from-amber-700 to-yellow-700 hover:from-amber-600 hover:to-yellow-600 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-3 text-amber-50"
+                  className="w-full px-8 py-4 bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-3 text-white border border-orange-300 border-opacity-50" style={{boxShadow: '0 0 40px rgba(249, 115, 22, 0.3)'}}
                 >
                   <Send size={24} />
                   <span>{formStatus === 'sending' ? 'Sending...' : 'Send Message'}</span>
                 </button>
                 
                 {formStatus === 'success' && (
-                  <div className="bg-green-900 bg-opacity-30 border border-green-700 border-opacity-50 rounded-xl p-4 mt-4">
-                    <p className="text-green-100 text-center text-lg">Thank you! Your message has been sent successfully. I&apos;ll get back to you soon.</p>
+                  <div className="bg-green-900 bg-opacity-30 border border-green-600 border-opacity-50 rounded-lg p-4 mt-4">
+                    <p className="text-green-300 text-center text-lg">Thank you! Your message has been sent successfully. I&apos;ll get back to you soon.</p>
                   </div>
                 )}
                 {formStatus === 'error' && (
-                  <div className="bg-red-900 bg-opacity-30 border border-red-700 border-opacity-50 rounded-xl p-4 mt-4">
-                    <p className="text-red-100 text-center text-lg">Oops! Something went wrong. Please try again or contact me directly at priyanshurana2228@gmail.com</p>
+                  <div className="bg-red-900 bg-opacity-30 border border-red-600 border-opacity-50 rounded-lg p-4 mt-4">
+                    <p className="text-red-300 text-center text-lg">Oops! Something went wrong. Please try again or contact me directly at priyanshurana2228@gmail.com</p>
                   </div>
                 )}
               </form>
 
-              <div className="mt-12 pt-8 border-t border-amber-700 border-opacity-40">
+              <div className="mt-12 pt-8 border-t border-amber-600 border-opacity-30">
                 <div className="flex justify-center space-x-8 mb-6">
                   <a
                     href="mailto:priyanshurana2228@gmail.com"
-                    className="text-amber-300 hover:text-amber-100 transition-colors"
+                    className="text-orange-400 hover:text-orange-300 transition-colors transform hover:scale-110"
                   >
                     <Mail size={32} />
                   </a>
@@ -501,7 +597,7 @@ export default function Portfolio() {
                     href="https://linkedin.com/in/priyanshu-rana-230a152a4"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-amber-300 hover:text-amber-100 transition-colors"
+                    className="text-orange-400 hover:text-orange-300 transition-colors transform hover:scale-110"
                   >
                     <Linkedin size={32} />
                   </a>
@@ -509,17 +605,17 @@ export default function Portfolio() {
                     href="https://github.com/Priyanshu2209"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-amber-300 hover:text-amber-100 transition-colors"
+                    className="text-orange-400 hover:text-orange-300 transition-colors transform hover:scale-110"
                   >
                     <Github size={32} />
                   </a>
                 </div>
-                <p className="text-center text-amber-300 text-lg">Scarborough, ON · +1 (437)-665-2472</p>
+                <p className="text-center text-slate-400 text-lg">Scarborough, ON · +1 (437)-665-2472</p>
               </div>
 
               <button
                 onClick={() => window.open('/Priyanshu_Rana_Resume.pdf', '_blank')}
-                className="mt-8 w-full flex items-center justify-center space-x-3 px-6 py-4 bg-amber-900 bg-opacity-40 hover:bg-amber-900 hover:bg-opacity-60 border border-amber-700 border-opacity-50 hover:border-amber-400 hover:border-opacity-70 rounded-xl transition-all text-lg backdrop-blur-sm text-amber-100"
+                className="mt-8 w-full flex items-center justify-center space-x-3 px-6 py-4 bg-slate-800 bg-opacity-50 hover:bg-slate-800 hover:bg-opacity-70 border border-orange-500 border-opacity-30 hover:border-orange-400 hover:border-opacity-60 rounded-lg transition-all text-lg backdrop-blur-sm text-orange-300 font-medium"
               >
                 <Download size={24} />
                 <span>Download Resume</span>
@@ -529,7 +625,7 @@ export default function Portfolio() {
         </section>
 
         {/* Footer */}
-        <footer className="py-8 text-center text-amber-400 border-t border-amber-700 border-opacity-40">
+        <footer className="py-8 text-center text-slate-400 border-t border-amber-600 border-opacity-40 bg-gradient-to-b from-transparent to-amber-950 to-opacity-20">
           <p className="text-lg">© 2025 Priyanshu Rana. Built with React & Tailwind CSS.</p>
         </footer>
       </div>
