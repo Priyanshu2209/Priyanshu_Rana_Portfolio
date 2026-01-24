@@ -17,25 +17,43 @@ html, body {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: linear-gradient(180deg, #3d2817, #2d1810);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #14b8a6, #06b6d4);
-  border-radius: 5px;
+  background: linear-gradient(180deg, #8b6914, #d4a574);
+  border-radius: 6px;
 }
 
-@keyframes pulse {
-  0%, 100% { 
-    opacity: 0.3;
-  }
-  50% { 
-    opacity: 1;
-  }
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #d4a574, #e8b88a);
+}
+
+/* Flickering candle effect */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+  75% { opacity: 0.9; }
+}
+
+@keyframes gentle-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes page-turn {
+  0% { transform: rotateY(0deg); }
+  50% { transform: rotateY(-15deg); }
+  100% { transform: rotateY(0deg); }
+}
+
+@keyframes warm-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(218, 165, 32, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(218, 165, 32, 0.5); }
 }
 
 section {
@@ -43,4 +61,54 @@ section {
   padding-top: 4rem;
   padding-bottom: 4rem;
   scroll-margin-top: 4rem;
+}
+
+/* Vintage paper texture overlay */
+.paper-texture {
+  position: relative;
+}
+
+.paper-texture::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(139, 105, 20, 0.03) 2px,
+      rgba(139, 105, 20, 0.03) 4px
+    );
+  pointer-events: none;
+}
+
+/* Book-like shadows */
+.book-shadow {
+  box-shadow: 
+    2px 2px 5px rgba(0, 0, 0, 0.3),
+    4px 4px 10px rgba(0, 0, 0, 0.2),
+    inset 0 0 30px rgba(139, 105, 20, 0.1);
+}
+
+/* Warm candlelight glow */
+.candle-glow {
+  animation: warm-glow 3s ease-in-out infinite;
+}
+
+/* Vintage map background */
+.vintage-map-bg {
+  background: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      rgba(139, 105, 20, 0.02) 2px,
+      rgba(139, 105, 20, 0.02) 4px
+    ),
+    linear-gradient(135deg, #4a3728 0%, #6b5344 25%, #7d6651 50%, #6b5344 75%, #4a3728 100%);
+  background-attachment: fixed;
 }
