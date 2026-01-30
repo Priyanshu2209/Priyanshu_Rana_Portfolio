@@ -124,7 +124,7 @@ export default function Portfolio() {
       `}</style>
       {/* Background with sunset gradient */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-orange-950 via-amber-900 to-slate-950"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950"></div>
         
         {/* Randomly positioned stars with varying sizes and twinkle effect */}
         <svg className="absolute inset-0 w-full h-full" style={{opacity: 0.5}} preserveAspectRatio="none" viewBox="0 0 1000 1000\">
@@ -228,7 +228,7 @@ export default function Portfolio() {
       {/* Main content */}
       <div className="relative z-10">
         {/* Navigation */}
-        <nav className="fixed top-0 w-full bg-gradient-to-b from-orange-950 to-orange-950 bg-opacity-90 backdrop-blur-lg z-50 border-b border-amber-600 border-opacity-40 shadow-2xl">
+        <nav className="fixed top-0 w-full bg-gradient-to-b from-slate-950 to-blue-950 bg-opacity-90 backdrop-blur-lg z-50 border-b border-orange-600 border-opacity-40 shadow-2xl">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <div className="text-2xl font-bold bg-gradient-to-r from-amber-300 to-orange-300 bg-clip-text text-transparent font-serif">
@@ -256,7 +256,7 @@ export default function Portfolio() {
           </div>
 
           {isMenuOpen && (
-            <div className="md:hidden bg-gradient-to-b from-orange-900 to-orange-950 bg-opacity-95 backdrop-blur-md border-t border-amber-600 border-opacity-40">
+            <div className="md:hidden bg-gradient-to-b from-slate-900 to-blue-950 bg-opacity-95 backdrop-blur-md border-t border-orange-600 border-opacity-40">
               <div className="px-4 py-4 space-y-3">
                 {['home', 'about', 'experience', 'projects', 'skills', 'contact'].map((section) => (
                   <button
@@ -273,34 +273,34 @@ export default function Portfolio() {
         </nav>
 
         {/* Home Section */}
-        <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-16 bg-gradient-to-b from-orange-950 via-amber-900 to-slate-900">
+        <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-16 bg-gradient-to-b from-slate-950 via-blue-900 to-slate-900">
           <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-block mb-12 group">
-              <div className="w-56 h-56 rounded-full bg-gradient-to-br from-orange-500 via-amber-400 to-orange-600 flex items-center justify-center text-6xl font-bold shadow-2xl border-4 border-orange-300 border-opacity-70 relative transform group-hover:scale-105 transition-transform duration-300" style={{boxShadow: '0 0 60px rgba(249, 115, 22, 0.7), inset 0 0 25px rgba(255, 255, 255, 0.25), 0 15px 40px rgba(0, 0, 0, 0.5)'}}>
-                <span className="text-white font-serif tracking-wider drop-shadow-lg">PR</span>
+            <div className="inline-block mb-12 mt-16 group">
+              <div className="w-40 h-40 rounded-full bg-gradient-to-br from-slate-950 via-blue-800 to-slate-950 flex items-center justify-center text-4xl font-bold border-4 border-amber-400 border-opacity-50 relative transform group-hover:scale-105 transition-transform duration-300">
+                <span className="text-white font-serif tracking-wider">PR</span>
               </div>
             </div>
-            <h1 className="text-7xl md:text-8xl font-bold mb-4 bg-gradient-to-r from-amber-100 via-orange-200 to-amber-100 bg-clip-text text-transparent font-serif leading-tight drop-shadow-2xl">
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 text-orange-300 font-serif leading-tight">
               Priyanshu Rana
             </h1>
-            <p className="text-2xl md:text-3xl text-orange-200 mb-2 font-light tracking-wide font-sans drop-shadow-md">Full Stack Developer</p>
-            <p className="text-lg md:text-xl text-orange-100 mb-12 max-w-2xl mx-auto leading-relaxed font-sans font-light drop-shadow-md">
+            <p className="text-2xl md:text-3xl text-orange-200 mb-2 font-light tracking-wide font-sans">Full Stack Developer</p>
+            <p className="text-lg md:text-xl text-orange-100 mb-12 max-w-2xl mx-auto leading-relaxed font-sans font-light">
               Building elegant, scalable solutions with modern technologies. Specialized in database architecture, cloud infrastructure, and enterprise software development.
             </p>
             <div className="flex justify-center space-x-6 mb-12">
-              <a href="mailto:priyanshurana2228@gmail.com" className="p-4 bg-gradient-to-br from-orange-600 to-amber-700 hover:from-orange-500 hover:to-amber-600 rounded-lg transition-all duration-300 transform hover:scale-110 hover:-translate-y-2 border-2 border-orange-300 border-opacity-80 shadow-lg backdrop-blur-sm" style={{boxShadow: '0 0 30px rgba(249, 115, 22, 0.4)'}}>
-                <Mail size={28} className="text-white" />
+              <a href="mailto:priyanshurana2228@gmail.com" className="p-4 bg-transparent border-2 border-orange-400 hover:bg-orange-400 hover:bg-opacity-20 rounded-lg transition-all duration-300 transform hover:scale-110 hover:-translate-y-2">
+                <Mail size={28} className="text-orange-400" />
               </a>
-              <a href="https://linkedin.com/in/priyanshu-rana-230a152a4" target="_blank" rel="noopener noreferrer" className="p-4 bg-gradient-to-br from-orange-600 to-amber-700 hover:from-orange-500 hover:to-amber-600 rounded-lg transition-all duration-300 transform hover:scale-110 hover:-translate-y-2 border-2 border-orange-300 border-opacity-80 shadow-lg backdrop-blur-sm" style={{boxShadow: '0 0 30px rgba(249, 115, 22, 0.4)'}}>
-                <Linkedin size={28} className="text-white" />
+              <a href="https://linkedin.com/in/priyanshu-rana-230a152a4" target="_blank" rel="noopener noreferrer" className="p-4 bg-transparent border-2 border-orange-400 hover:bg-orange-400 hover:bg-opacity-20 rounded-lg transition-all duration-300 transform hover:scale-110 hover:-translate-y-2">
+                <Linkedin size={28} className="text-orange-400" />
               </a>
-              <a href="https://github.com/Priyanshu2209" target="_blank" rel="noopener noreferrer" className="p-4 bg-gradient-to-br from-orange-600 to-amber-700 hover:from-orange-500 hover:to-amber-600 rounded-lg transition-all duration-300 transform hover:scale-110 hover:-translate-y-2 border-2 border-orange-300 border-opacity-80 shadow-lg backdrop-blur-sm" style={{boxShadow: '0 0 30px rgba(249, 115, 22, 0.4)'}}>
-                <Github size={28} className="text-white" />
+              <a href="https://github.com/Priyanshu2209" target="_blank" rel="noopener noreferrer" className="p-4 bg-transparent border-2 border-orange-400 hover:bg-orange-400 hover:bg-opacity-20 rounded-lg transition-all duration-300 transform hover:scale-110 hover:-translate-y-2">
+                <Github size={28} className="text-orange-400" />
               </a>
             </div>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <button onClick={() => scrollToSection('projects')} className="px-10 py-4 bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 shadow-xl text-white border-2 border-orange-300 border-opacity-60 backdrop-blur-sm" style={{boxShadow: '0 0 40px rgba(249, 115, 22, 0.5)'}}>View My Work</button>
-              <button onClick={() => scrollToSection('contact')} className="px-10 py-4 bg-slate-800 bg-opacity-60 hover:bg-opacity-80 border-2 border-orange-500 border-opacity-80 hover:border-opacity-100 rounded-lg font-bold text-lg transition-all text-orange-200 hover:text-orange-100 backdrop-blur-sm transform hover:scale-105 hover:-translate-y-2">Get In Touch</button>
+              <button onClick={() => scrollToSection('projects')} className="px-10 py-4 bg-transparent border-2 border-orange-400 hover:bg-orange-400 hover:bg-opacity-20 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 text-orange-400">View My Work</button>
+              <button onClick={() => scrollToSection('contact')} className="px-10 py-4 bg-transparent border-2 border-orange-400 hover:bg-orange-400 hover:bg-opacity-20 rounded-lg font-bold text-lg transition-all text-orange-400 transform hover:scale-105 hover:-translate-y-2">Get In Touch</button>
             </div>
           </div>
         </section>
@@ -355,6 +355,39 @@ export default function Portfolio() {
               Experience
             </h2>
             <div className="space-y-8">
+              <div className="bg-slate-800 bg-opacity-40 backdrop-blur-lg p-10 rounded-2xl border-2 border-orange-500 border-opacity-40 shadow-lg hover:border-opacity-70 transition-all duration-300" style={{boxShadow: '0 0 30px rgba(249, 115, 22, 0.1)'}}>
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-6">
+                  <div>
+                    <h3 className="text-3xl font-bold text-orange-200 mb-2">Data Analyst Co-op</h3>
+                    <p className="text-orange-300 text-lg">AI Financial Group</p>
+                    <p className="text-slate-300">Markham, ON</p>
+                  </div>
+                  <span className="text-slate-300 mt-2 sm:mt-0 font-light">Jan 2026 – Apr 2026</span>
+                </div>
+                <ul className="space-y-4 text-slate-100 text-lg">
+                  <li className="flex items-start">
+                    <span className="text-orange-400 mr-3 text-xl">→</span>
+                    <span>Analyzed and processed large-scale financial datasets using SQL Server Management Studio (SSMS) and Python Pandas</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-orange-400 mr-3 text-xl">→</span>
+                    <span>Designed and structured relational databases following financial data best practices, enabling efficient transaction processing and reporting</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-orange-400 mr-3 text-xl">→</span>
+                    <span>Performed comprehensive data cleaning and validation on financial records, identifying and resolving inconsistencies to ensure data integrity</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-orange-400 mr-3 text-xl">→</span>
+                    <span>Optimized complex SQL queries to improve database performance and reduce query execution time for analytical reports</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-orange-400 mr-3 text-xl">→</span>
+                    <span>Collaborated with analytics team to automate data ETL processes and deliver accurate financial metrics for decision-making</span>
+                  </li>
+                </ul>
+              </div>
+
               <div className="bg-slate-800 bg-opacity-40 backdrop-blur-lg p-10 rounded-2xl border-2 border-orange-500 border-opacity-40 shadow-lg hover:border-opacity-70 transition-all duration-300" style={{boxShadow: '0 0 30px rgba(249, 115, 22, 0.1)'}}>
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-6">
                   <div>
@@ -466,7 +499,7 @@ export default function Portfolio() {
                   Programming
                 </h3>
                 <div className="flex flex-wrap gap-3">
-                  {['Python', 'Java', 'C', 'C++', 'Kotlin'].map((skill) => (
+                  {['Python', 'Java', 'C', 'C++', 'Kotlin', 'Pandas'].map((skill) => (
                     <span key={skill} className="px-4 py-2 bg-slate-700 bg-opacity-50 text-orange-200 rounded-full text-sm font-medium border border-orange-500 border-opacity-50 hover:border-opacity-100 hover:bg-opacity-80 transition-all cursor-default">
                       {skill}
                     </span>
@@ -480,7 +513,7 @@ export default function Portfolio() {
                   Databases
                 </h3>
                 <div className="flex flex-wrap gap-3">
-                  {['MySQL', 'Oracle SQL', 'MongoDB', 'DB2'].map((skill) => (
+                  {['MySQL', 'Oracle SQL', 'MongoDB', 'DB2', 'SQL Server (SSMS)'].map((skill) => (
                     <span key={skill} className="px-4 py-2 bg-slate-700 bg-opacity-50 text-orange-200 rounded-full text-sm font-medium border border-orange-500 border-opacity-50 hover:border-opacity-100 hover:bg-opacity-80 transition-all cursor-default">
                       {skill}
                     </span>
@@ -505,7 +538,7 @@ export default function Portfolio() {
               <div className="bg-slate-800 bg-opacity-40 backdrop-blur-lg p-8 rounded-2xl border-2 border-orange-500 border-opacity-40 shadow-lg hover:border-opacity-70 transition-all duration-300 transform hover:scale-105 md:col-span-2 lg:col-span-3" style={{boxShadow: '0 0 30px rgba(249, 115, 22, 0.1)'}}>
                 <h3 className="text-2xl font-bold text-orange-200 mb-6">Tools & Platforms</h3>
                 <div className="flex flex-wrap gap-3">
-                  {['Git/GitHub', 'IServer', 'VS Code', 'Eclipse', 'Database Design', 'Data Analysis', 'Debugging'].map((skill) => (
+                  {['Git/GitHub', 'IServer', 'VS Code', 'Eclipse', 'Database Design', 'Data Analysis', 'Data Cleaning', 'ETL', 'Query Optimization', 'Debugging'].map((skill) => (
                     <span key={skill} className="px-4 py-2 bg-slate-700 bg-opacity-50 text-orange-200 rounded-full text-sm font-medium border border-orange-500 border-opacity-50 hover:border-opacity-100 hover:bg-opacity-80 transition-all cursor-default">
                       {skill}
                     </span>
@@ -626,7 +659,7 @@ export default function Portfolio() {
 
         {/* Footer */}
         <footer className="py-8 text-center text-slate-400 border-t border-amber-600 border-opacity-40 bg-gradient-to-b from-transparent to-amber-950 to-opacity-20">
-          <p className="text-lg">© 2025 Priyanshu Rana. Built with React & Tailwind CSS.</p>
+          <p className="text-lg">© 2026 Priyanshu Rana. Built with React & Tailwind CSS.</p>
         </footer>
       </div>
     </div>
