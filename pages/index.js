@@ -486,6 +486,7 @@ export default function Portfolio() {
           </div>
         </section>
 
+        
         {/* Skills Section */}
         <section id="skills" className="py-32 px-4 bg-transparent">
           <div className="max-w-5xl mx-auto">
