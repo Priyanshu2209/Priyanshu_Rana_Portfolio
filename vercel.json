@@ -1,21 +1,65 @@
 {
+  "$schema": "https://vercel.com/schemas/vercel.json",
+  "framework": "nextjs",
   "buildCommand": "next build",
   "devCommand": "next dev",
   "installCommand": "npm install",
-  "framework": "nextjs",
+  "outputDirectory": ".next",
+  "cleanUrls": true,
+  "trailingSlash": true,
   "regions": ["iad1"],
   "functions": {
     "pages/api/**": {
-      "maxDuration": 30
+      "maxDuration": 30,
+      "memory": 1024
     }
   },
-  "env": [
-    "EMAIL_USER",
-    "EMAIL_PASS"
-  ],
-  "git": {
-    "deploymentEnabled": {
-      "main": true
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=86400"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    },
+    {
+      "source": "/api/contact",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        }
+      ]
     }
-  }
+  ],
+  "redirects": [
+    {
+      "source": "/contact/:path*",
+      "destination": "/#contact"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap"
+    }
+  ]
 }
