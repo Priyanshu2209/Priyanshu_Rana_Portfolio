@@ -1,0 +1,21 @@
+{
+  "buildCommand": "next build",
+  "devCommand": "next dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "regions": ["iad1"],
+  "functions": {
+    "pages/api/**": {
+      "maxDuration": 30
+    }
+  },
+  "env": [
+    "EMAIL_USER",
+    "EMAIL_PASS"
+  ],
+  "git": {
+    "deploymentEnabled": {
+      "main": true
+    }
+  }
+}
