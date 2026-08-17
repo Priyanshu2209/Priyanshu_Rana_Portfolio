@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+<<<<<<< Updated upstream
   images: {
     unoptimized: true,
     formats: ['image/webp', 'image/avif'],
@@ -23,6 +24,12 @@ const nextConfig = {
         ],
       },
     ];
+=======
+  logging: {
+    fetches: {
+      full: false,
+    },
+>>>>>>> Stashed changes
   },
 }
 

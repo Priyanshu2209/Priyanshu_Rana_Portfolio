@@ -1,41 +1,37 @@
 import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { Mail, Linkedin, Github, Download, Code, Database, Award, Briefcase, GraduationCap, ExternalLink, Send, Menu, X } from 'lucide-react';
 
-export default function Portfolio() {
+function PortfolioContent() {
   const [activeSection, setActiveSection] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [formStatus, setFormStatus] = useState('');
   const [stars, setStars] = useState({ small: [], medium: [], large: [] });
 
-  // Generate stars only on client side
   useEffect(() => {
-    const generateStars = () => {
+    // Only run on client
+    if (typeof window !== 'undefined') {
       const smallStars = Array.from({ length: 100 }, (_, i) => ({
         id: `small-${i}`,
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
         animationDelay: `${Math.random() * 3}s`,
       }));
-
       const mediumStars = Array.from({ length: 50 }, (_, i) => ({
         id: `medium-${i}`,
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
         animationDelay: `${Math.random() * 3}s`,
       }));
-
       const largeStars = Array.from({ length: 25 }, (_, i) => ({
         id: `large-${i}`,
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
         animationDelay: `${Math.random() * 3}s`,
       }));
-
-      return { small: smallStars, medium: mediumStars, large: largeStars };
-    };
-
-    setStars(generateStars());
+      setStars({ small: smallStars, medium: mediumStars, large: largeStars });
+    }
   }, []);
 
   useEffect(() => {
@@ -57,10 +53,12 @@ export default function Portfolio() {
   }, []);
 
   const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
+    if (typeof window !== 'undefined') {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        setIsMenuOpen(false);
+      }
     }
   };
 
@@ -648,8 +646,17 @@ export default function Portfolio() {
               </div>
 
               <button
+<<<<<<< Updated upstream
                 onClick={() => window.open('/Priyanshu_Rana_Resume.pdf', '_blank')}
                 className="mt-8 w-full flex items-center justify-center space-x-3 px-6 py-4 bg-slate-800 bg-opacity-50 hover:bg-slate-800 hover:bg-opacity-70 border border-orange-500 border-opacity-30 hover:border-orange-400 hover:border-opacity-60 rounded-lg transition-all text-lg backdrop-blur-sm text-orange-300 font-medium"
+=======
+                onClick={() => {
+                  if (typeof window !== 'undefined') {
+                    window.open('/Priyanshu_Rana_Resume.pdf', '_blank');
+                  }
+                }}
+                className="mt-8 w-full flex items-center justify-center space-x-3 px-6 py-4 bg-amber-900 bg-opacity-40 hover:bg-amber-900 hover:bg-opacity-60 border border-amber-700 border-opacity-50 hover:border-amber-400 hover:border-opacity-70 rounded-xl transition-all text-lg backdrop-blur-sm text-amber-100"
+>>>>>>> Stashed changes
               >
                 <Download size={24} />
                 <span>Download Resume</span>
@@ -666,3 +673,12 @@ export default function Portfolio() {
     </div>
   );
 }
+
+export default dynamic(() => Promise.resolve(PortfolioContent), {
+  ssr: false,
+  loading: () => (
+    <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center">
+      <div>Loading...</div>
+    </div>
+  ),
+});
