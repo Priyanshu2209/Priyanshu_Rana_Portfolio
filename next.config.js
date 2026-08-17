@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   images: {
     unoptimized: true,
     formats: ['image/webp', 'image/avif'],
@@ -25,10 +26,15 @@ const nextConfig = {
       },
     ];
 =======
+=======
+>>>>>>> Stashed changes
   logging: {
     fetches: {
       full: false,
     },
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   },
 }

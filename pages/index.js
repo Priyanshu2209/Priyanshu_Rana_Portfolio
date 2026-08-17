@@ -647,9 +647,12 @@ function PortfolioContent() {
 
               <button
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 onClick={() => window.open('/Priyanshu_Rana_Resume.pdf', '_blank')}
                 className="mt-8 w-full flex items-center justify-center space-x-3 px-6 py-4 bg-slate-800 bg-opacity-50 hover:bg-slate-800 hover:bg-opacity-70 border border-orange-500 border-opacity-30 hover:border-orange-400 hover:border-opacity-60 rounded-lg transition-all text-lg backdrop-blur-sm text-orange-300 font-medium"
 =======
+=======
+>>>>>>> Stashed changes
                 onClick={() => {
                   if (typeof window !== 'undefined') {
                     window.open('/Priyanshu_Rana_Resume.pdf', '_blank');
