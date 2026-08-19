@@ -68,7 +68,7 @@ export const projects = [
     title: 'Blood Bank Management System',
     stack: 'SQL Server',
     description:
-      'A relational database system for managing blood donations, inventory tracking, and reporting — with advanced SQL queries, ER diagrams, and structured documentation.',
+      'A relational database system for managing blood donations, inventory tracking, and reporting - with advanced SQL queries, ER diagrams, and structured documentation.',
     tags: ['SQL Server', 'Database Design', 'ER Modeling'],
     link: 'https://github.com/Priyanshu2209/Blood_bank_system_database',
   },
@@ -91,7 +91,7 @@ export const skills = [
 
 export const certificates = [
   {
-    title: 'Certificate of Achievement — Data Analyst Internship',
+    title: 'Certificate of Achievement - Data Analyst Internship',
     issuer: 'AI Financial',
     date: '2026',
     file: '/certificates/Priyanshu_Rana_certificate.pdf',
