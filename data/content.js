@@ -81,9 +81,10 @@ export const skills = [
 
 export const certificates = [
   {
-    title: 'Certificate of Achievement - Data Analyst Internship',
+    title: 'Certificate of Achievement — Data Analyst Internship',
     issuer: 'AI Financial',
     date: '2026',
     file: '/certificates/Priyanshu_Rana_certificate.pdf',
+    preview: '/certificates/Priyanshu_Rana_certificate.png',
   },
 ];

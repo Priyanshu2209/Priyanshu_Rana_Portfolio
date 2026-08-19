@@ -13,21 +13,31 @@ export default function Certificates() {
         <div className="grid md:grid-cols-2 gap-8">
           {certificates.map((c, i) => (
             <div key={i} className="card overflow-hidden flex flex-col">
-              {/* Embedded preview of the certificate */}
-              <div className="relative w-full bg-ink-950 border-b border-brass-500/10">
-                <object
-                  data={`${c.file}#view=FitH&toolbar=0&navpanes=0`}
-                  type="application/pdf"
-                  className="w-full h-72"
-                  aria-label={`${c.title} preview`}
-                >
-                  {/* Fallback if the browser can't inline-render the PDF */}
+              {/* Image preview of the certificate (opens full PDF on click) */}
+              <a
+                href={c.file}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative block w-full bg-ink-950 border-b border-brass-500/10 group"
+              >
+                {c.preview ? (
+                  <img
+                    src={c.preview}
+                    alt={`${c.title} preview`}
+                    className="w-full h-auto object-contain max-h-96 mx-auto transition-transform duration-300 group-hover:scale-[1.02]"
+                  />
+                ) : (
                   <div className="w-full h-72 flex flex-col items-center justify-center text-muted gap-3">
                     <Award size={40} className="text-brass-400" />
                     <p className="text-sm">Preview unavailable — use the buttons below</p>
                   </div>
-                </object>
-              </div>
+                )}
+                <div className="absolute inset-0 flex items-center justify-center bg-ink-950/0 group-hover:bg-ink-950/30 transition-colors">
+                  <span className="opacity-0 group-hover:opacity-100 transition-opacity inline-flex items-center gap-2 px-4 py-2 bg-ink-950/80 text-parchment rounded-lg text-sm">
+                    <ExternalLink size={16} /> Open full certificate
+                  </span>
+                </div>
+              </a>
 
               {/* Details + actions */}
               <div className="p-6 flex flex-col flex-grow">
