@@ -9,20 +9,31 @@ export const profile = {
   location: 'North York, ON',
   phone: '+1 (437) 665-2472',
   resume: '/Priyanshu_Rana_Resume.pdf',
+  photo: '/profile.jpg',
 };
 
 export const sections = ['home', 'about', 'experience', 'projects', 'skills', 'certificates', 'contact'];
 
 export const about = {
   paragraphs: [
-    "I'm a Computer Programming and Analysis student at Seneca Polytechnic with a strong foundation in database systems, data analysis, and software development. My path began with a Diploma in Computer Engineering, and I've since worked as a Data Analyst Intern at AI Financial and a Database Intern at Tata Consultancy Services.",
-    "I care about clean data models, query optimization, and building reporting that people can actually trust. I enjoy the quiet, careful work of turning messy data into something structured and useful.",
-  ],
-  cards: [
-    { label: 'Education', primary: 'Computer Programming & Analysis', secondary: 'Seneca Polytechnic · Expected Dec 2026' },
-    { label: 'Latest Role', primary: 'Data Analyst Intern', secondary: 'AI Financial Power Group · 2026' },
+    "I'm in my final year of Computer Programming and Analysis at Seneca Polytechnic, with a strong foundation in database systems, data analysis, and software development. I've worked as a Data Analyst Intern at AI Financial and a Database Intern at TCS.",
   ],
 };
+
+export const education = [
+  {
+    degree: 'Computer Programming & Analysis',
+    school: 'Seneca Polytechnic',
+    location: 'North York, ON',
+    years: 'Expected Dec 2026',
+  },
+  {
+    degree: 'Diploma in Computer Engineering',
+    school: 'BBIT College',
+    location: 'Gujarat, India',
+    years: 'Graduated Jul 2022',
+  },
+];
 
 export const experience = [
   {
@@ -57,7 +68,7 @@ export const projects = [
     title: 'Blood Bank Management System',
     stack: 'SQL Server',
     description:
-      'A relational database system for managing blood donations, inventory tracking, and reporting - with advanced SQL queries, ER diagrams, and structured documentation.',
+      'A relational database system for managing blood donations, inventory tracking, and reporting — with advanced SQL queries, ER diagrams, and structured documentation.',
     tags: ['SQL Server', 'Database Design', 'ER Modeling'],
     link: 'https://github.com/Priyanshu2209/Blood_bank_system_database',
   },
@@ -67,7 +78,7 @@ export const projects = [
     description:
       'A responsive booking platform with real-time seat availability, schedule management, and secure user authentication. Backend built with PHP and MySQL.',
     tags: ['PHP', 'MySQL', 'JavaScript', 'HTML/CSS'],
-    link: null,
+    link: 'https://github.com/Priyanshu2209/It-s_show_time',
   },
 ];
 
@@ -78,13 +89,11 @@ export const skills = [
   { label: 'Core Skills', items: ['Database Design', 'ER Modeling', 'Data Analysis', 'Data Cleaning', 'Query Optimization', 'ETL Concepts'] },
 ];
 
-
 export const certificates = [
   {
     title: 'Certificate of Achievement — Data Analyst Internship',
     issuer: 'AI Financial',
     date: '2026',
     file: '/certificates/Priyanshu_Rana_certificate.pdf',
-    preview: '/certificates/Priyanshu_Rana_certificate.png',
   },
 ];

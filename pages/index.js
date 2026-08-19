@@ -1,4 +1,5 @@
 import Nav from '../components/Nav';
+import Background from '../components/Background';
 import Hero from '../components/Hero';
 import About from '../components/About';
 import Experience from '../components/Experience';
@@ -10,7 +11,8 @@ import Footer from '../components/Footer';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-ink-950">
+    <div className="min-h-screen">
+      <Background />
       <Nav />
       <Hero />
       <About />

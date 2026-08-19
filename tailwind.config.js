@@ -8,26 +8,46 @@ module.exports = {
     extend: {
       colors: {
         ink: {
-          950: '#0f0f11',
-          900: '#16161a',
-          800: '#1a1a1f',
-          700: '#26262d',
+          900: '#0f172a',
+          800: '#1e293b',
+          700: '#334155',
+          600: '#475569',
+          500: '#64748b',
         },
-        brass: {
-          300: '#e0c88f',
-          400: '#d4b878',
-          500: '#c9a961',
-          600: '#b0914d',
+        sky: {
+          50: '#f0f9ff',
+          100: '#e0f2fe',
+          200: '#bae6fd',
+          300: '#7dd3fc',
+          400: '#38bdf8',
+          500: '#0ea5e9',
+          600: '#0284c7',
         },
-        parchment: '#e8e6e1',
-        muted: '#a1a1aa',
       },
       fontFamily: {
-        serif: ['var(--font-fraunces)', 'Georgia', 'serif'],
+        display: ['var(--font-sora)', 'system-ui', 'sans-serif'],
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
       },
       maxWidth: {
         content: '72rem',
+      },
+      keyframes: {
+        'fade-up': {
+          '0%': { opacity: '0', transform: 'translateY(16px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        drift: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(60px)' },
+        },
+      },
+      animation: {
+        'fade-up': 'fade-up 0.7s ease-out both',
+        float: 'float 6s ease-in-out infinite',
       },
     },
   },
