@@ -16,15 +16,14 @@ export const sections = ['home', 'about', 'experience', 'projects', 'skills', 'c
 
 export const about = {
   paragraphs: [
-    "I'm in my final year of Computer Programming and Analysis at Seneca Polytechnic, building on an earlier Diploma in Computer Engineering. My focus is databases and data — designing clean SQL schemas, modeling relationships, and making sure the numbers people rely on are accurate and consistent.",
-    "Most recently I worked as a Data Analyst Intern at AI Financial, where I built a centralized SQL Server tracking database, automated refreshable reporting with Excel Power Query and Python, and turned five years of market data into usable views for benchmarking. Before that, as a Database Intern at TCS, I optimized SQL databases and wrote data-cleaning scripts to keep large datasets reliable.",
-    "I care about clean data models, query optimization, and reporting people can actually trust. I enjoy the careful, methodical work of turning messy, scattered data into something structured, clear, and genuinely useful.",
+    "I'm in my final year of Computer Programming and Analysis at Seneca Polytechnic, building on an earlier Diploma in Computer Engineering. My focus is databases and data - designing clean SQL schemas, modeling relationships, and making sure the numbers people rely on are accurate.",
+    "Most recently, as a Data Analyst Intern at AI Financial, I built a centralized SQL Server tracking database, automated reporting with Excel Power Query and Python, and turned five years of market data into usable views. I care about clean data models, query optimization, and reporting people can trust.",
   ],
 };
 
 export const education = [
   {
-    degree: 'Computer Programming & Analysis',
+    degree: 'Advanced Diploma in Computer Programming & Analysis',
     school: 'Seneca Polytechnic',
     location: 'North York, ON',
     years: 'Expected Dec 2026',
@@ -44,12 +43,12 @@ export const experience = [
     location: 'Markham, ON',
     date: 'Jan 2026 – Apr 2026',
     points: [
-      'Designed and implemented a centralized SQL Server campaign tracking database capturing transaction sources and campaign attribution, improving visibility into marketing performance and transaction-level analytics.',
-      'Collaborated with directors and managers to gather requirements, refine ER models, and deploy normalized schemas using SSMS and Draw.io.',
-      'Reverse-engineered undocumented production databases and executed complex SQL queries to analyze schema relationships, data dependencies, and system workflows.',
-      'Developed SQL production views comparing 5 years of NYSE/NASDAQ market data against internal fund performance metrics for reporting and benchmarking.',
-      'Integrated SQL views with Excel Power Query to automate refreshable dashboards across daily, monthly, and yearly workflows.',
-      'Built Python (Pandas) automation scripts to aggregate client data and generate structured PDF reports, reducing manual effort.',
+      'Designed and implemented a centralized SQL Server campaign tracking database to capture transaction sources and campaign attribution across 15+ campaigns, improving visibility into marketing performance and transaction-level analytics.',
+      'Collaborated with directors and managers to gather business requirements, refine ER models, and deploy 10+ normalized database schemas using SSMS and Draw.io.',
+      'Reverse-engineered 5+ undocumented production databases and executed complex SQL queries to analyze schema relationships, data dependencies, and system workflows.',
+      'Developed SQL production views comparing 5 years of NYSE/NASDAQ market data against internal fund performance metrics for financial reporting and benchmarking.',
+      'Integrated SQL views with Excel Power Query to automate refreshable dashboards and streamline daily, monthly, and yearly performance analysis workflows.',
+      'Built automation scripts using Python (Pandas) to aggregate client data, generate 20+ structured PDF reports, and reduce manual reporting effort.',
     ],
   },
   {
@@ -58,8 +57,8 @@ export const experience = [
     location: 'Ahmedabad, India',
     date: 'Jan 2022 – Jun 2022',
     points: [
-      'Designed and optimized SQL databases for internal business applications, improving query efficiency and data retrieval performance.',
-      'Created validation and data-cleaning scripts to ensure consistency and accuracy across multiple datasets.',
+      'Designed and optimized SQL databases for internal business applications, improving query efficiency and data retrieval performance by ~25%.',
+      'Created validation and data-cleaning scripts to ensure data consistency and accuracy across 8+ datasets.',
       'Collaborated with backend developers to support database operations, reporting workflows, and ER diagram documentation.',
     ],
   },
@@ -70,19 +69,19 @@ export const projects = [
     title: 'Blood Bank Management System',
     stack: 'SQL Server',
     description:
-      'A relational database system for managing blood donations, inventory tracking, and reporting — with advanced SQL queries, ER diagrams, and structured documentation.',
+      'A relational database system with 8+ tables for managing blood donations, inventory tracking, and reporting - with 20+ advanced SQL queries, ER diagrams, and structured documentation.',
     tags: ['SQL Server', 'Database Design', 'ER Modeling'],
     link: 'https://github.com/Priyanshu2209/Blood_bank_system_database',
     details:
       'A database-driven application that manages blood donations, donor records, and inventory for a blood bank. It simulates how real-world organisations handle critical data storage, reporting, and retrieval operations.',
     features: [
-      'Comprehensive database schema with ER diagrams and a data dictionary.',
-      'Advanced SQL queries for searching donors, tracking availability, and managing inventory.',
+      'Comprehensive schema of 8+ tables with ER diagrams and a data dictionary.',
+      '20+ advanced SQL queries for searching donors, tracking availability, and managing inventory.',
       'Automated report generation to support decision-making and efficient resource allocation.',
       'Scalable design ready for future Python, MongoDB, and front-end integration.',
     ],
     outcomes:
-      'Gained hands-on experience in real-world database design, optimising storage and retrieval, and reporting through complex SQL — a foundation for expanding into Python and NoSQL (MongoDB).',
+      'Gained hands-on experience in real-world database design, optimising storage and retrieval, and reporting through complex SQL - a foundation for expanding into Python and NoSQL (MongoDB).',
   },
   {
     title: 'Online Movie Ticket Booking System',
@@ -115,7 +114,7 @@ export const skills = [
 
 export const certificates = [
   {
-    title: 'Certificate of Achievement — Data Analyst Internship',
+    title: 'Certificate of Achievement - Data Analyst Internship',
     issuer: 'AI Financial',
     date: '2026',
     file: '/certificates/Priyanshu_Rana_certificate.pdf',

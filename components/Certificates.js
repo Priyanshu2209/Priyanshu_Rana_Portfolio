@@ -1,5 +1,6 @@
 import { Award, ExternalLink, Download } from 'lucide-react';
 import { certificates } from '../data/content';
+import CloudPuff from './CloudPuff';
 
 export default function Certificates() {
   return (
@@ -22,20 +23,13 @@ export default function Certificates() {
               </div>
 
               <div className="flex gap-3 mt-auto">
-                <a
-                  href={c.file}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-sky-500 to-sky-400 text-white rounded-lg text-sm font-medium hover:shadow-lg hover:-translate-y-0.5 transition-all"
-                >
+                <a href={c.file} target="_blank" rel="noopener noreferrer" className="btn-sketch group/btn flex-1">
+                  <CloudPuff />
                   <ExternalLink size={16} />
                   View
                 </a>
-                <a
-                  href={c.file}
-                  download
-                  className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-sky-200 text-ink-700 rounded-lg text-sm font-medium hover:border-sky-400 hover:bg-sky-50 transition-all"
-                >
+                <a href={c.file} download className="btn-sketch group/btn flex-1">
+                  <CloudPuff />
                   <Download size={16} />
                   Download
                 </a>

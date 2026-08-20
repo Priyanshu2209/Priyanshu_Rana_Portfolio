@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Mail, Linkedin, Github, Send, Download } from 'lucide-react';
 import { profile } from '../data/content';
+import CloudPuff from './CloudPuff';
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -41,7 +42,6 @@ export default function Contact() {
   return (
     <section id="contact" className="section py-24">
       <div className="section-inner max-w-2xl">
-        {/* Left-aligned to match About / Projects / Skills */}
         <p className="eyebrow mb-3">Contact</p>
         <h2 className="section-title text-4xl md:text-5xl mb-4">Let&apos;s talk</h2>
         <p className="text-ink-600 mb-12 leading-relaxed">
@@ -55,7 +55,8 @@ export default function Contact() {
               <input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={field} placeholder="your.email@example.com" required />
             </div>
             <textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} rows={5} className={field} placeholder="Your message..." required />
-            <button type="submit" disabled={status === 'sending'} className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed">
+            <button type="submit" disabled={status === 'sending'} className="btn-primary group/btn w-full disabled:opacity-50 disabled:cursor-not-allowed">
+              <CloudPuff />
               <Send size={18} />
               {status === 'sending' ? 'Sending...' : 'Send message'}
             </button>
@@ -80,7 +81,8 @@ export default function Contact() {
             </div>
             <p className="text-center text-ink-500 text-sm mb-8">{profile.location} · {profile.phone}</p>
 
-            <a href={profile.resume} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-2 px-6 py-3.5 border border-sky-200 hover:border-sky-400 hover:bg-sky-50 text-ink-700 rounded-lg transition-all">
+            <a href={profile.resume} target="_blank" rel="noopener noreferrer" className="btn-sketch group/btn w-full">
+              <CloudPuff />
               <Download size={18} />
               Download résumé
             </a>

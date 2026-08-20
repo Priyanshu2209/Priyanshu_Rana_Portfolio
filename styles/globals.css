@@ -66,7 +66,10 @@
     background-color: #e0f2fe;
     transform: translateY(-2px);
   }
+
+  /* Primary (filled) button */
   .btn-primary {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -84,6 +87,34 @@
     transform: translateY(-2px);
     box-shadow: 0 8px 22px rgba(14, 165, 233, 0.45);
   }
+
+  /* Secondary (sketch / cloud outline) button */
+  .btn-sketch {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.9rem 1.8rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #0284c7;
+    background: #ffffff;
+    border: 2px solid #7dd3fc;
+    border-radius: 9999px;
+    box-shadow: 2px 3px 0 rgba(125, 211, 252, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+  .btn-sketch:hover {
+    transform: translateY(-2px);
+    background: #f0f9ff;
+    box-shadow: 3px 5px 0 rgba(125, 211, 252, 0.55);
+  }
+  .btn-sketch:active {
+    transform: translateY(0);
+    box-shadow: 1px 2px 0 rgba(125, 211, 252, 0.5);
+  }
+
   .section-title {
     font-family: var(--font-sora), sans-serif;
     font-weight: 700;
@@ -105,7 +136,7 @@
   }
 }
 
-/* Light paper grain over everything (very subtle) */
+/* Light paper grain (very subtle) */
 .paper-grain {
   pointer-events: none;
   position: fixed;
@@ -115,13 +146,24 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Clouds drift fully across the screen */
+/* Clouds drift across screen */
 @keyframes cloud-cross {
   0%   { transform: translateX(-12vw); }
   100% { transform: translateX(112vw); }
 }
 
-/* Nav-hover cloud puff */
+/* Cloud puff that pops out of any button on hover */
+.btn-puff { opacity: 0; }
+@keyframes cloud-puff-out {
+  0%   { opacity: 0; transform: translate(-50%, 2px) scale(0.5); }
+  35%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, -22px) scale(1.4); }
+}
+.group\/btn:hover .btn-puff {
+  animation: cloud-puff-out 0.6s ease-out forwards;
+}
+
+/* Desktop nav hover puff */
 @keyframes puff {
   0%   { opacity: 0; transform: translate(-50%, 4px) scale(0.6); }
   40%  { opacity: 0.9; }
@@ -140,17 +182,7 @@
   animation: puff 0.7s ease-out forwards;
 }
 
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #f0f9ff; }
-::-webkit-scrollbar-thumb { background: #bae6fd; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #7dd3fc; }
-
-::selection {
-  background-color: #bae6fd;
-  color: #0f172a;
-}
-
-/* --- Mobile nav: cloud puff + slide-in on menu open --- */
+/* Mobile nav: slide-in + cloud puff on open */
 @keyframes mobile-item-in {
   0%   { opacity: 0; transform: translateX(-10px); }
   100% { opacity: 1; transform: translateX(0); }
@@ -167,65 +199,12 @@
   animation: mobile-puff 0.5s ease-out both;
 }
 
-/* --- Sketch cloud doodle bob (hero) --- */
-@keyframes doodle-bob {
-  0%, 100% { transform: translateY(0) rotate(-3deg); }
-  50%      { transform: translateY(-6px) rotate(2deg); }
-}
-.doodle-bob {
-  animation: doodle-bob 5s ease-in-out infinite;
-}
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f0f9ff; }
+::-webkit-scrollbar-thumb { background: #bae6fd; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #7dd3fc; }
 
-/* --- Hand-drawn underline under the hero name --- */
-.sketch-underline {
-  position: relative;
-  display: inline-block;
-}
-.sketch-underline::after {
-  content: '';
-  position: absolute;
-  left: -2%;
-  bottom: -0.5rem;
-  width: 104%;
-  height: 14px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='14' viewBox='0 0 300 14'%3E%3Cpath d='M2 8 C 50 3, 100 12, 150 7 S 250 3, 298 9' fill='none' stroke='%230ea5e9' stroke-width='3' stroke-linecap='round' opacity='0.65'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-}
-/* --- Sketch / cloud outline button --- */
-.btn-sketch {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.9rem 1.8rem;
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: #0284c7;
-  background: #ffffff;
-  border: 2px solid #7dd3fc;
-  border-radius: 9999px;
-  /* slightly irregular, hand-drawn feel */
-  box-shadow: 2px 3px 0 rgba(125, 211, 252, 0.4);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-}
-.btn-sketch:hover {
-  transform: translateY(-2px);
-  background: #f0f9ff;
-  box-shadow: 3px 5px 0 rgba(125, 211, 252, 0.55);
-}
-.btn-sketch:active {
-  transform: translateY(0);
-  box-shadow: 1px 2px 0 rgba(125, 211, 252, 0.5);
-}
-
-/* Cloud puff that pops out of the sketch button */
-@keyframes cloud-puff-out {
-  0%   { opacity: 0; transform: translate(-50%, 2px) scale(0.5); }
-  35%  { opacity: 1; }
-  100% { opacity: 0; transform: translate(-50%, -22px) scale(1.4); }
-}
-.cloud-puff-out {
-  animation: cloud-puff-out 0.6s ease-out forwards;
+::selection {
+  background-color: #bae6fd;
+  color: #0f172a;
 }
