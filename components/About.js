@@ -9,17 +9,17 @@ export default function About() {
         <h2 className="section-title text-4xl md:text-5xl mb-12">A little about me</h2>
 
         <div className="grid md:grid-cols-5 gap-8 items-start">
-          {/* Compact about text — smaller share of the row */}
-          <div className="md:col-span-2">
-            <div className="card p-7">
+          {/* Main about card */}
+          <div className="md:col-span-3">
+            <div className="card p-8 md:p-10 space-y-5">
               {about.paragraphs.map((p, i) => (
-                <p key={i} className="text-ink-600 leading-relaxed">{p}</p>
+                <p key={i} className="text-ink-600 leading-relaxed text-lg">{p}</p>
               ))}
             </div>
           </div>
 
-          {/* Interactive education — the focal point */}
-          <div className="md:col-span-3">
+          {/* Education (static — shows both) */}
+          <div className="md:col-span-2">
             <Education />
           </div>
         </div>

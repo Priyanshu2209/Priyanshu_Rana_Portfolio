@@ -16,7 +16,9 @@ export const sections = ['home', 'about', 'experience', 'projects', 'skills', 'c
 
 export const about = {
   paragraphs: [
-    "I'm in my final year of Computer Programming and Analysis at Seneca Polytechnic, with a strong foundation in database systems, data analysis, and software development. I've worked as a Data Analyst Intern at AI Financial and a Database Intern at TCS.",
+    "I'm in my final year of Computer Programming and Analysis at Seneca Polytechnic, building on an earlier Diploma in Computer Engineering. My focus is databases and data — designing clean SQL schemas, modeling relationships, and making sure the numbers people rely on are accurate and consistent.",
+    "Most recently I worked as a Data Analyst Intern at AI Financial, where I built a centralized SQL Server tracking database, automated refreshable reporting with Excel Power Query and Python, and turned five years of market data into usable views for benchmarking. Before that, as a Database Intern at TCS, I optimized SQL databases and wrote data-cleaning scripts to keep large datasets reliable.",
+    "I care about clean data models, query optimization, and reporting people can actually trust. I enjoy the careful, methodical work of turning messy, scattered data into something structured, clear, and genuinely useful.",
   ],
 };
 
@@ -68,7 +70,7 @@ export const projects = [
     title: 'Blood Bank Management System',
     stack: 'SQL Server',
     description:
-      'A relational database system for managing blood donations, inventory tracking, and reporting - with advanced SQL queries, ER diagrams, and structured documentation.',
+      'A relational database system for managing blood donations, inventory tracking, and reporting — with advanced SQL queries, ER diagrams, and structured documentation.',
     tags: ['SQL Server', 'Database Design', 'ER Modeling'],
     link: 'https://github.com/Priyanshu2209/Blood_bank_system_database',
   },
@@ -91,7 +93,7 @@ export const skills = [
 
 export const certificates = [
   {
-    title: 'Certificate of Achievement - Data Analyst Internship',
+    title: 'Certificate of Achievement — Data Analyst Internship',
     issuer: 'AI Financial',
     date: '2026',
     file: '/certificates/Priyanshu_Rana_certificate.pdf',
