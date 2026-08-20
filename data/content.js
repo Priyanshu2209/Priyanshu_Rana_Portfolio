@@ -41,7 +41,7 @@ export const experience = [
     role: 'Data Analyst Intern (Co-op)',
     company: 'AI Financial Power Group Limited',
     location: 'Markham, ON',
-    date: 'Jan 2026 – Apr 2026',
+    date: 'Jan 2026 - Apr 2026',
     points: [
       'Designed and implemented a centralized SQL Server campaign tracking database to capture transaction sources and campaign attribution across 15+ campaigns, improving visibility into marketing performance and transaction-level analytics.',
       'Collaborated with directors and managers to gather business requirements, refine ER models, and deploy 10+ normalized database schemas using SSMS and Draw.io.',
@@ -55,7 +55,7 @@ export const experience = [
     role: 'Database Intern',
     company: 'Tata Consultancy Services (TCS)',
     location: 'Ahmedabad, India',
-    date: 'Jan 2022 – Jun 2022',
+    date: 'Jan 2022 - Jun 2022',
     points: [
       'Designed and optimized SQL databases for internal business applications, improving query efficiency and data retrieval performance by ~25%.',
       'Created validation and data-cleaning scripts to ensure data consistency and accuracy across 8+ datasets.',
