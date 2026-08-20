@@ -1,30 +1,36 @@
-import { Mail, Linkedin, Github } from 'lucide-react';
+import { useState } from 'react';
+import { Mail, Linkedin, Github, FileText } from 'lucide-react';
 import { profile } from '../data/content';
 
-function DoodleCloud() {
+function PuffCloud({ show }) {
   return (
     <svg
-      className="doodle-bob absolute -top-6 -right-6 md:-top-8 md:right-4 w-16 h-10 text-sky-400"
-      viewBox="0 0 80 48"
-      fill="none"
+      className={`pointer-events-none absolute left-1/2 -top-3 w-8 h-5 text-sky-400 transition-none ${show ? 'cloud-puff-out' : 'opacity-0'}`}
+      viewBox="0 0 32 20"
+      fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
-      <path
-        d="M18 40 Q8 40 9 31 Q1 22 13 18 Q15 5 33 9 Q42 -1 58 6 Q76 4 74 22 Q80 32 66 40 Z"
-        stroke="currentColor"
-        strokeWidth="2.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      {/* little sketch shading strokes */}
-      <path d="M24 44 L28 40 M34 45 L39 40 M46 44 L50 40" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" opacity="0.7" />
+      <ellipse cx="10" cy="14" rx="9" ry="5" />
+      <ellipse cx="18" cy="10" rx="8" ry="6" />
+      <ellipse cx="24" cy="14" rx="7" ry="5" />
     </svg>
   );
 }
 
 export default function Hero() {
   const go = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  const [puff, setPuff] = useState(false);
+
+  const openResume = () => {
+    // fire the puff, then open résumé shortly after so the cloud is visible
+    setPuff(false);
+    requestAnimationFrame(() => setPuff(true));
+    setTimeout(() => {
+      window.open(profile.resume, '_blank', 'noopener,noreferrer');
+      setPuff(false);
+    }, 450);
+  };
 
   return (
     <section id="home" className="section min-h-screen flex items-center">
@@ -43,20 +49,16 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right — name, tagline, links, button */}
+          {/* Right — name, tagline, links, buttons */}
           <div className="text-center md:text-left order-2">
             <p className="eyebrow mb-4 animate-fade-up">Data Analyst · Database Developer</p>
 
-            <div className="relative inline-block">
-              {/* sketch cloud doodle floating by the name */}
-              <DoodleCloud />
-              <h1
-                className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-ink-900 leading-[1.05] mb-6 animate-fade-up"
-                style={{ animationDelay: '0.05s' }}
-              >
-                <span className="sketch-underline">{profile.name}</span>
-              </h1>
-            </div>
+            <h1
+              className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-ink-900 leading-[1.05] mb-6 animate-fade-up"
+              style={{ animationDelay: '0.05s' }}
+            >
+              <span className="sketch-underline">{profile.name}</span>
+            </h1>
 
             <p
               className="text-lg md:text-xl text-ink-600 leading-relaxed mb-8 max-w-xl mx-auto md:mx-0 animate-fade-up"
@@ -80,13 +82,28 @@ export default function Hero() {
               </a>
             </div>
 
-            <button
-              onClick={() => go('contact')}
-              className="btn-primary animate-fade-up"
+            {/* Two buttons */}
+            <div
+              className="flex flex-wrap justify-center md:justify-start gap-4 animate-fade-up"
               style={{ animationDelay: '0.2s' }}
             >
-              Get in touch
-            </button>
+              <button onClick={() => go('contact')} className="btn-primary">
+                Get in touch
+              </button>
+
+              {/* Sketch/cloud outline button — puffs a cloud on hover & click */}
+              <button
+                onClick={openResume}
+                onMouseEnter={() => setPuff(true)}
+                onMouseLeave={() => setPuff(false)}
+                className="btn-sketch group relative"
+                aria-label="View résumé"
+              >
+                <PuffCloud show={puff} />
+                <FileText size={18} />
+                View résumé
+              </button>
+            </div>
           </div>
         </div>
       </div>

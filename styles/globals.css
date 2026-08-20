@@ -192,3 +192,40 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
+/* --- Sketch / cloud outline button --- */
+.btn-sketch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.8rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #0284c7;
+  background: #ffffff;
+  border: 2px solid #7dd3fc;
+  border-radius: 9999px;
+  /* slightly irregular, hand-drawn feel */
+  box-shadow: 2px 3px 0 rgba(125, 211, 252, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.btn-sketch:hover {
+  transform: translateY(-2px);
+  background: #f0f9ff;
+  box-shadow: 3px 5px 0 rgba(125, 211, 252, 0.55);
+}
+.btn-sketch:active {
+  transform: translateY(0);
+  box-shadow: 1px 2px 0 rgba(125, 211, 252, 0.5);
+}
+
+/* Cloud puff that pops out of the sketch button */
+@keyframes cloud-puff-out {
+  0%   { opacity: 0; transform: translate(-50%, 2px) scale(0.5); }
+  35%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, -22px) scale(1.4); }
+}
+.cloud-puff-out {
+  animation: cloud-puff-out 0.6s ease-out forwards;
+}

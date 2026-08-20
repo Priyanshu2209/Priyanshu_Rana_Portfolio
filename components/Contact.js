@@ -41,9 +41,10 @@ export default function Contact() {
   return (
     <section id="contact" className="section py-24">
       <div className="section-inner max-w-2xl">
-        <p className="eyebrow mb-3 text-center">Contact</p>
-        <h2 className="section-title text-4xl md:text-5xl mb-4 text-center">Let&apos;s talk</h2>
-        <p className="text-ink-600 text-center mb-12 leading-relaxed">
+        {/* Left-aligned to match About / Projects / Skills */}
+        <p className="eyebrow mb-3">Contact</p>
+        <h2 className="section-title text-4xl md:text-5xl mb-4">Let&apos;s talk</h2>
+        <p className="text-ink-600 mb-12 leading-relaxed">
           I&apos;m open to new opportunities and collaborations. Feel free to reach out.
         </p>
 
