@@ -7,14 +7,13 @@ function Cloud({ style, className = '', opacity = 1 }) {
       opacity={opacity}
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* filled soft cloud */}
       <g fill="#ffffff">
         <ellipse cx="34" cy="40" rx="30" ry="17" />
         <ellipse cx="60" cy="30" rx="27" ry="22" />
         <ellipse cx="86" cy="40" rx="26" ry="16" />
         <rect x="18" y="38" width="86" height="20" rx="10" />
       </g>
-      {/* pencil-sketch outline (subtle artist touch) */}
+      {/* pencil-sketch outline */}
       <path
         d="M20 52 Q10 52 12 44 Q4 34 16 30 Q18 14 38 18 Q46 6 64 12 Q84 8 86 26 Q104 26 102 42 Q106 52 92 52 Z"
         fill="none"
@@ -36,17 +35,23 @@ export default function Background() {
       <div className="absolute -top-40 -right-32 w-[40rem] h-[40rem] rounded-full bg-gradient-to-br from-sky-200/60 to-transparent blur-3xl" />
       <div className="absolute top-1/2 -left-48 w-[34rem] h-[34rem] rounded-full bg-sky-200/40 blur-3xl" />
 
-      {/* Drifting clouds — cross the whole screen at different speeds */}
+      {/*
+        Each cloud uses a NEGATIVE animation-delay so it starts partway
+        through its journey — clouds are already spread out and moving
+        from the very first frame (no frozen/bunched start).
+      */}
       <Cloud className="w-64" opacity={0.95}
-        style={{ top: '12%', left: 0, filter: 'blur(2px)', animation: 'cloud-cross 60s linear infinite' }} />
+        style={{ top: '12%', left: 0, filter: 'blur(2px)', animation: 'cloud-cross 60s linear infinite', animationDelay: '-8s' }} />
       <Cloud className="w-40" opacity={0.85}
-        style={{ top: '26%', left: 0, filter: 'blur(1px)', animation: 'cloud-cross 44s linear infinite', animationDelay: '8s' }} />
+        style={{ top: '26%', left: 0, filter: 'blur(1px)', animation: 'cloud-cross 44s linear infinite', animationDelay: '-25s' }} />
       <Cloud className="w-72" opacity={0.8}
-        style={{ top: '55%', left: 0, filter: 'blur(3px)', animation: 'cloud-cross 78s linear infinite', animationDelay: '3s' }} />
+        style={{ top: '55%', left: 0, filter: 'blur(3px)', animation: 'cloud-cross 78s linear infinite', animationDelay: '-50s' }} />
       <Cloud className="w-48" opacity={0.9}
-        style={{ top: '70%', left: 0, filter: 'blur(2px)', animation: 'cloud-cross 52s linear infinite', animationDelay: '15s' }} />
+        style={{ top: '70%', left: 0, filter: 'blur(2px)', animation: 'cloud-cross 52s linear infinite', animationDelay: '-15s' }} />
       <Cloud className="w-36" opacity={0.75}
-        style={{ top: '84%', left: 0, filter: 'blur(1px)', animation: 'cloud-cross 66s linear infinite', animationDelay: '22s' }} />
+        style={{ top: '84%', left: 0, filter: 'blur(1px)', animation: 'cloud-cross 66s linear infinite', animationDelay: '-38s' }} />
+      <Cloud className="w-52" opacity={0.7}
+        style={{ top: '40%', left: 0, filter: 'blur(2px)', animation: 'cloud-cross 70s linear infinite', animationDelay: '-60s' }} />
     </div>
   );
 }

@@ -149,3 +149,46 @@
   background-color: #bae6fd;
   color: #0f172a;
 }
+
+/* --- Mobile nav: cloud puff + slide-in on menu open --- */
+@keyframes mobile-item-in {
+  0%   { opacity: 0; transform: translateX(-10px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+.mobile-item {
+  animation: mobile-item-in 0.4s ease-out both;
+}
+@keyframes mobile-puff {
+  0%   { opacity: 0; transform: translateY(3px) scale(0.6); }
+  45%  { opacity: 1; }
+  100% { opacity: 0.85; transform: translateY(0) scale(1); }
+}
+.mobile-puff {
+  animation: mobile-puff 0.5s ease-out both;
+}
+
+/* --- Sketch cloud doodle bob (hero) --- */
+@keyframes doodle-bob {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50%      { transform: translateY(-6px) rotate(2deg); }
+}
+.doodle-bob {
+  animation: doodle-bob 5s ease-in-out infinite;
+}
+
+/* --- Hand-drawn underline under the hero name --- */
+.sketch-underline {
+  position: relative;
+  display: inline-block;
+}
+.sketch-underline::after {
+  content: '';
+  position: absolute;
+  left: -2%;
+  bottom: -0.5rem;
+  width: 104%;
+  height: 14px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='14' viewBox='0 0 300 14'%3E%3Cpath d='M2 8 C 50 3, 100 12, 150 7 S 250 3, 298 9' fill='none' stroke='%230ea5e9' stroke-width='3' stroke-linecap='round' opacity='0.65'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

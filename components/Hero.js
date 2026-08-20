@@ -1,6 +1,28 @@
 import { Mail, Linkedin, Github } from 'lucide-react';
 import { profile } from '../data/content';
 
+function DoodleCloud() {
+  return (
+    <svg
+      className="doodle-bob absolute -top-6 -right-6 md:-top-8 md:right-4 w-16 h-10 text-sky-400"
+      viewBox="0 0 80 48"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        d="M18 40 Q8 40 9 31 Q1 22 13 18 Q15 5 33 9 Q42 -1 58 6 Q76 4 74 22 Q80 32 66 40 Z"
+        stroke="currentColor"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {/* little sketch shading strokes */}
+      <path d="M24 44 L28 40 M34 45 L39 40 M46 44 L50 40" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" opacity="0.7" />
+    </svg>
+  );
+}
+
 export default function Hero() {
   const go = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
@@ -24,12 +46,18 @@ export default function Hero() {
           {/* Right — name, tagline, links, button */}
           <div className="text-center md:text-left order-2">
             <p className="eyebrow mb-4 animate-fade-up">Data Analyst · Database Developer</p>
-            <h1
-              className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-ink-900 leading-[1.05] mb-6 animate-fade-up"
-              style={{ animationDelay: '0.05s' }}
-            >
-              {profile.name}
-            </h1>
+
+            <div className="relative inline-block">
+              {/* sketch cloud doodle floating by the name */}
+              <DoodleCloud />
+              <h1
+                className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-ink-900 leading-[1.05] mb-6 animate-fade-up"
+                style={{ animationDelay: '0.05s' }}
+              >
+                <span className="sketch-underline">{profile.name}</span>
+              </h1>
+            </div>
+
             <p
               className="text-lg md:text-xl text-ink-600 leading-relaxed mb-8 max-w-xl mx-auto md:mx-0 animate-fade-up"
               style={{ animationDelay: '0.1s' }}

@@ -12,6 +12,16 @@ function Puff() {
   );
 }
 
+function MiniCloud() {
+  return (
+    <svg className="mobile-puff w-6 h-4 text-sky-400 flex-shrink-0" viewBox="0 0 26 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <ellipse cx="8" cy="11" rx="7" ry="4" />
+      <ellipse cx="14" cy="8" rx="6" ry="5" />
+      <ellipse cx="19" cy="11" rx="6" ry="4" />
+    </svg>
+  );
+}
+
 export default function Nav() {
   const [active, setActive] = useState('home');
   const [open, setOpen] = useState(false);
@@ -42,6 +52,7 @@ export default function Nav() {
           Priyanshu Rana
         </button>
 
+        {/* Desktop nav — cloud puff on hover */}
         <div className="hidden md:flex items-center gap-7">
           {sections.map((s) => (
             <button
@@ -67,15 +78,20 @@ export default function Nav() {
         </button>
       </div>
 
+      {/* Mobile menu — each item slides in with a little cloud that puffs on tap */}
       {open && (
         <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-sky-100">
           <div className="px-6 py-4 space-y-1">
-            {sections.map((s) => (
+            {sections.map((s, i) => (
               <button
                 key={s}
                 onClick={() => go(s)}
-                className="block w-full text-left capitalize py-2.5 text-sm text-ink-600 hover:text-sky-600 transition-colors"
+                className={`mobile-item flex items-center gap-3 w-full text-left capitalize py-2.5 text-sm transition-colors ${
+                  active === s ? 'text-sky-600 font-semibold' : 'text-ink-600 hover:text-sky-600'
+                }`}
+                style={{ animationDelay: `${i * 60}ms` }}
               >
+                <MiniCloud />
                 {s}
               </button>
             ))}
