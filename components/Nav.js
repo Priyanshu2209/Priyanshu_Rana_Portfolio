@@ -1,6 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { sections, profile } from '../data/content';
+import { sections } from '../data/content';
+
+function Puff() {
+  return (
+    <svg className="nav-puff" viewBox="0 0 26 16" xmlns="http://www.w3.org/2000/svg" fill="#7dd3fc">
+      <ellipse cx="8" cy="11" rx="7" ry="4" />
+      <ellipse cx="14" cy="8" rx="6" ry="5" />
+      <ellipse cx="19" cy="11" rx="6" ry="4" />
+    </svg>
+  );
+}
 
 export default function Nav() {
   const [active, setActive] = useState('home');
@@ -26,39 +36,45 @@ export default function Nav() {
   };
 
   return (
-    <nav className="fixed top-0 w-full bg-ink-950/80 backdrop-blur-md z-50 border-b border-brass-500/10">
+    <nav className="fixed top-0 w-full bg-white/70 backdrop-blur-md z-50 border-b border-sky-100">
       <div className="max-w-content mx-auto px-6 flex justify-between items-center h-16">
-        <button onClick={() => go('home')} className="font-serif text-lg font-semibold text-parchment tracking-tight">
+        <button onClick={() => go('home')} className="font-display text-lg font-bold text-ink-900">
           Priyanshu Rana
         </button>
 
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-7">
           {sections.map((s) => (
             <button
               key={s}
               onClick={() => go(s)}
-              className={`text-sm capitalize transition-colors ${
-                active === s ? 'text-brass-400' : 'text-muted hover:text-parchment'
+              className={`group/nav relative text-sm capitalize transition-colors py-1 ${
+                active === s ? 'text-sky-600' : 'text-ink-500 hover:text-ink-800'
               }`}
             >
+              <Puff />
               {s}
+              <span
+                className={`absolute left-0 -bottom-0.5 h-0.5 bg-sky-500 transition-all duration-300 ${
+                  active === s ? 'w-full' : 'w-0 group-hover/nav:w-full'
+                }`}
+              />
             </button>
           ))}
         </div>
 
-        <button className="md:hidden text-muted" onClick={() => setOpen(!open)} aria-label="Menu">
+        <button className="md:hidden text-ink-600" onClick={() => setOpen(!open)} aria-label="Menu">
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
       {open && (
-        <div className="md:hidden bg-ink-950/95 backdrop-blur-md border-t border-brass-500/10">
+        <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-sky-100">
           <div className="px-6 py-4 space-y-1">
             {sections.map((s) => (
               <button
                 key={s}
                 onClick={() => go(s)}
-                className="block w-full text-left capitalize py-2.5 text-sm text-muted hover:text-brass-400 transition-colors"
+                className="block w-full text-left capitalize py-2.5 text-sm text-ink-600 hover:text-sky-600 transition-colors"
               >
                 {s}
               </button>

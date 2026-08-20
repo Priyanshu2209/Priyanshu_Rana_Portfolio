@@ -13,6 +13,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <Background />
+      <div className="paper-grain" />
       <Nav />
       <Hero />
       <About />
