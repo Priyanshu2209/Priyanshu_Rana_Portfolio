@@ -8,7 +8,7 @@ export const profile = {
   github: 'https://github.com/Priyanshu2209',
   location: 'North York, ON',
   phone: '+1 (437) 665-2472',
-  resume: '/Priyanshu_Rana_Resume.pdf',
+  resume: '/Priyanshu_Rana_Resume_.pdf',
   photo: '/profile.jpg',
 };
 
