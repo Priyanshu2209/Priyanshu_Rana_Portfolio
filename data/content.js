@@ -119,4 +119,10 @@ export const certificates = [
     date: '2026',
     file: '/certificates/Priyanshu_Rana_certificate.pdf',
   },
+  {
+    title: 'PostgreSQL Essential Training',
+    issuer: 'LinkedIn Learning',
+    date: 'Sep 2026',
+    file: '/certificates/Priyanshu_Rana_PostgreSQL_certificate.pdf',
+  },
 ];
