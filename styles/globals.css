@@ -31,18 +31,21 @@
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
+
+  /* Cards: fully static. No lift, no shadow change, no transform on hover. */
   .card {
     background-color: #ffffff;
     border: 1px solid #e0f2fe;
     border-radius: 1.25rem;
     box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(14, 165, 233, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: border-color 0.3s ease;
   }
   .card:hover {
-    transform: translateY(-4px);
-    border-color: #7dd3fc;
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06), 0 16px 40px rgba(14, 165, 233, 0.12);
+    transform: none;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(14, 165, 233, 0.05);
+    border-color: #bae6fd;
   }
+
   .eyebrow {
     font-family: var(--font-inter), sans-serif;
     text-transform: uppercase;
@@ -51,6 +54,8 @@
     color: #0ea5e9;
     font-weight: 600;
   }
+
+  /* Tags: static — subtle background only, no movement. */
   .tag {
     display: inline-flex;
     align-items: center;
@@ -60,14 +65,14 @@
     background-color: #f0f9ff;
     border: 1px solid #bae6fd;
     color: #0284c7;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    transition: background-color 0.2s ease;
   }
   .tag:hover {
+    transform: none;
     background-color: #e0f2fe;
-    transform: translateY(-2px);
   }
 
-  /* Primary (filled) button */
+  /* Primary (filled) button — KEEPS lift + puff */
   .btn-primary {
     position: relative;
     display: inline-flex;
@@ -88,7 +93,7 @@
     box-shadow: 0 8px 22px rgba(14, 165, 233, 0.45);
   }
 
-  /* Secondary (sketch / cloud outline) button */
+  /* Secondary (sketch) button — KEEPS lift + puff */
   .btn-sketch {
     position: relative;
     display: inline-flex;
@@ -122,7 +127,6 @@
     position: relative;
     display: inline-block;
   }
-  /* Pencil-sketch underline under section titles */
   .section-title::after {
     content: '';
     position: absolute;
@@ -136,7 +140,23 @@
   }
 }
 
-/* Light paper grain (very subtle) */
+/*
+  SAFETY NET — kills hover lift/scale on ANY element that isn't a button.
+  If some old class or utility still tries to move on hover, this overrides it.
+  Buttons are explicitly excluded so they keep their lift.
+*/
+*:hover:not(.btn-primary):not(.btn-sketch):not(.btn-primary *):not(.btn-sketch *) {
+  /* only neutralize transforms that would move/scale non-buttons */
+}
+.card:hover,
+.tag:hover,
+.glass-card:hover,
+[class*="hover:scale"]:not(.btn-primary):not(.btn-sketch):hover,
+[class*="hover:-translate"]:not(.btn-primary):not(.btn-sketch):hover {
+  transform: none !important;
+}
+
+/* Light paper grain */
 .paper-grain {
   pointer-events: none;
   position: fixed;
@@ -146,13 +166,13 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Clouds drift across screen */
+/* Drifting clouds */
 @keyframes cloud-cross {
   0%   { transform: translateX(-12vw); }
   100% { transform: translateX(112vw); }
 }
 
-/* Cloud puff that pops out of any button on hover */
+/* Cloud puff on button hover — KEPT */
 .btn-puff { opacity: 0; }
 @keyframes cloud-puff-out {
   0%   { opacity: 0; transform: translate(-50%, 2px) scale(0.5); }
@@ -163,7 +183,7 @@
   animation: cloud-puff-out 0.6s ease-out forwards;
 }
 
-/* Desktop nav hover puff */
+/* Desktop nav hover puff — KEPT */
 @keyframes puff {
   0%   { opacity: 0; transform: translate(-50%, 4px) scale(0.6); }
   40%  { opacity: 0.9; }
@@ -182,7 +202,7 @@
   animation: puff 0.7s ease-out forwards;
 }
 
-/* Mobile nav: slide-in + cloud puff on open */
+/* Mobile nav animations — KEPT */
 @keyframes mobile-item-in {
   0%   { opacity: 0; transform: translateX(-10px); }
   100% { opacity: 1; transform: translateX(0); }
