@@ -8,7 +8,7 @@ export const profile = {
   github: 'https://github.com/Priyanshu2209',
   location: 'North York, ON',
   phone: '+1 (437) 665-2472',
-  resume: '/Priyanshu_Rana_Resume_.pdf',
+  resume: '/Priyanshu_Rana_Resume.pdf',
   photo: '/profile.jpg',
 };
 
@@ -16,7 +16,7 @@ export const sections = ['home', 'about', 'experience', 'projects', 'skills', 'c
 
 export const about = {
   paragraphs: [
-    "I'm in my final year of Computer Programming and Analysis at Seneca Polytechnic, building on an earlier Diploma in Computer Engineering. My focus is databases and data - designing clean SQL schemas, modeling relationships, and making sure the numbers people rely on are accurate.",
+    "I'm in my final year of Computer Programming and Analysis at Seneca Polytechnic, building on an earlier Diploma in Computer Engineering. My focus is databases and data — designing clean SQL schemas, modeling relationships, and making sure the numbers people rely on are accurate.",
     "Most recently, as a Data Analyst Intern at AI Financial, I built a centralized SQL Server tracking database, automated reporting with Excel Power Query and Python, and turned five years of market data into usable views. I care about clean data models, query optimization, and reporting people can trust.",
   ],
 };
@@ -41,35 +41,44 @@ export const experience = [
     role: 'Data Analyst Intern (Co-op)',
     company: 'AI Financial Power Group Limited',
     location: 'Markham, ON',
-    date: 'Jan 2026 - Apr 2026',
+    date: 'Jan 2026 – Apr 2026',
     points: [
-      'Designed and implemented a centralized SQL Server campaign tracking database to capture transaction sources and campaign attribution across 15+ campaigns, improving visibility into marketing performance and transaction-level analytics.',
-      'Collaborated with directors and managers to gather business requirements, refine ER models, and deploy 10+ normalized database schemas using SSMS and Draw.io.',
+      'Designed and implemented a centralized SQL Server campaign tracking database capturing transaction sources and campaign attribution across 15+ campaigns to improve marketing and transaction-level reporting.',
+      'Collaborated with directors and managers to gather business requirements, design ER models in Draw.io, and deploy 10+ normalized database schemas in SQL Server using SSMS.',
       'Reverse-engineered 5+ undocumented production databases and executed complex SQL queries to analyze schema relationships, data dependencies, and system workflows.',
-      'Developed SQL production views comparing 5 years of NYSE/NASDAQ market data against internal fund performance metrics for financial reporting and benchmarking.',
-      'Integrated SQL views with Excel Power Query to automate refreshable dashboards and streamline daily, monthly, and yearly performance analysis workflows.',
+      'Developed SQL production views comparing 5 years of NYSE/NASDAQ market data against internal fund performance, and built 2 stored procedures deployed to the production server to automate financial reporting.',
+      'Integrated SQL views with Excel Power Query to automate refreshable dashboards for daily, monthly, and yearly performance analysis.',
       'Built automation scripts using Python (Pandas) to aggregate client data, generate 20+ structured PDF reports, and reduce manual reporting effort.',
-    ],
-  },
-  {
-    role: 'Database Intern',
-    company: 'Tata Consultancy Services (TCS)',
-    location: 'Ahmedabad, India',
-    date: 'Jan 2022 - Jun 2022',
-    points: [
-      'Designed and optimized SQL databases for internal business applications, improving query efficiency and data retrieval performance by ~25%.',
-      'Created validation and data-cleaning scripts to ensure data consistency and accuracy across 8+ datasets.',
-      'Collaborated with backend developers to support database operations, reporting workflows, and ER diagram documentation.',
     ],
   },
 ];
 
 export const projects = [
   {
+    title: 'CampaignLens: Campaign Attribution & Analytics',
+    stack: 'PostgreSQL · PL/pgSQL · Docker',
+    status: 'In Progress · 2026',
+    description:
+      'A normalized PostgreSQL 17 database modeling a campaign-to-investment funnel for a Canadian investment firm, with compliance built in (KYC, AML, CASL consent).',
+    tags: ['PostgreSQL', 'PL/pgSQL', 'Docker', 'Schema Design', 'Data Modeling'],
+    link: 'https://github.com/Priyanshu2209/campaign-attribution-analytics',
+    details:
+      "CampaignLens helps a Canadian investment firm measure which marketing campaigns actually bring in new investors and new investments — modeling conversions and ROI per campaign and channel. It's an end-to-end database design for a regulated financial business: translating business and compliance requirements into a normalized schema with enforced data-quality rules.",
+    features: [
+      'Designed a normalized PostgreSQL 17 database of 27 tables across 5 schemas modeling the full campaign → touchpoint → advisor → customer → account → investment funnel.',
+      'Enforced data quality with 8 CHECK constraints, a case-insensitive unique email index, soft deletes, and a reusable PL/pgSQL trigger that maintains audit timestamps.',
+      'Containerized the setup with Docker Compose (persistent volumes, health checks) for one-command startup; versioned SQL migrations, data dictionary, and ERD in Git.',
+      'Currently building the remaining campaign, advisor, and transaction tables and generating sample data to complete the end-to-end attribution funnel.',
+      'Next phase: reporting views for funnel drop-off and campaign/channel ROI, row-level security for advisor access, and Python (Pandas) analysis with charts.',
+    ],
+    outcomes:
+      'Demonstrates end-to-end database design for a regulated financial business — translating business and compliance requirements into a normalized schema with enforced data-quality rules, not just writing queries.',
+  },
+  {
     title: 'Blood Bank Management System',
     stack: 'SQL Server',
     description:
-      'A relational database system with 8+ tables for managing blood donations, inventory tracking, and reporting - with 20+ advanced SQL queries, ER diagrams, and structured documentation.',
+      'A relational database system with 8+ tables for managing blood donations, inventory tracking, and reporting — with 20+ advanced SQL queries, ER diagrams, and structured documentation.',
     tags: ['SQL Server', 'Database Design', 'ER Modeling'],
     link: 'https://github.com/Priyanshu2209/Blood_bank_system_database',
     details:
@@ -81,7 +90,7 @@ export const projects = [
       'Scalable design ready for future Python, MongoDB, and front-end integration.',
     ],
     outcomes:
-      'Gained hands-on experience in real-world database design, optimising storage and retrieval, and reporting through complex SQL - a foundation for expanding into Python and NoSQL (MongoDB).',
+      'Gained hands-on experience in real-world database design, optimising storage and retrieval, and reporting through complex SQL — a foundation for expanding into Python and NoSQL (MongoDB).',
   },
   {
     title: 'Online Movie Ticket Booking System',
@@ -106,17 +115,17 @@ export const projects = [
 ];
 
 export const skills = [
-  { label: 'Languages', items: ['Python', 'Java', 'C', 'C++', 'PHP', 'JavaScript', 'SQL'] },
-  { label: 'Databases', items: ['SQL Server', 'MySQL', 'Oracle SQL', 'MongoDB', 'DB2'] },
-  { label: 'Tools & Platforms', items: ['SSMS', 'Git/GitHub', 'Excel Power Query', 'VS Code', 'Eclipse', 'Azure'] },
-  { label: 'Core Skills', items: ['Database Design', 'ER Modeling', 'Data Analysis', 'Data Cleaning', 'Query Optimization', 'ETL Concepts'] },
+  { label: 'Languages', items: ['Python', 'Java', 'C', 'C++', 'PHP', 'JavaScript', 'SQL', 'PL/pgSQL'] },
+  { label: 'Databases', items: ['SQL Server', 'PostgreSQL', 'MySQL', 'Oracle SQL', 'MongoDB', 'DB2'] },
+  { label: 'Tools & Platforms', items: ['SSMS', 'pgAdmin', 'Docker', 'Git/GitHub', 'Excel Power Query', 'Azure', 'VS Code'] },
+  { label: 'Core Skills', items: ['Database Design', 'Schema Design', 'ER Modeling', 'Normalization', 'Data Analysis', 'Data Cleaning', 'Query Optimization', 'ETL Concepts'] },
 ];
 
 export const certificates = [
   {
-    title: 'Certificate of Achievement - Data Analyst Internship',
+    title: 'Certificate of Achievement — Data Analyst Internship',
     issuer: 'AI Financial',
-    date: '2026',
+    date: 'May 2026',
     file: '/certificates/Priyanshu_Rana_certificate.pdf',
   },
   {
