@@ -1,5 +1,6 @@
 import Nav from '../components/Nav';
 import Background from '../components/Background';
+import IntroLoader from '../components/IntroLoader';
 import Hero from '../components/Hero';
 import About from '../components/About';
 import Experience from '../components/Experience';
@@ -12,6 +13,7 @@ import Footer from '../components/Footer';
 export default function Home() {
   return (
     <div className="min-h-screen">
+      <IntroLoader />
       <Background />
       <div className="paper-grain" />
       <Nav />

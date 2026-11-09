@@ -219,6 +219,110 @@
   animation: mobile-puff 0.5s ease-out both;
 }
 
+/* ---------------------------------------------------------------
+   PAGE INTRO LOADER
+   Full-screen overlay in the theme background (no drifting clouds).
+   A pencil-sketch cloud draws itself, the name fades in, then the
+   whole overlay dissolves to reveal the live site.
+---------------------------------------------------------------- */
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* same theme background, but intentionally NO clouds */
+  background: linear-gradient(to bottom, #e0f2fe, #ffffff, #e0f2fe);
+  opacity: 1;
+  transition: opacity 0.7s ease;
+}
+.intro-overlay.intro-out {
+  opacity: 0;
+}
+
+.intro-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.intro-cloud {
+  width: 280px;
+  height: auto;
+  /* stacked shadows = soft drop shadow + sky-blue glow */
+  filter:
+    drop-shadow(0 12px 24px rgba(14, 165, 233, 0.30))
+    drop-shadow(0 0 34px rgba(56, 189, 248, 0.45));
+}
+
+/* The pencil-draw: stroke is hidden, then "drawn" from 0 to full.
+   pathLength="100" on the path makes this geometry-independent. */
+.intro-cloud-path {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: intro-draw 2s ease-in-out forwards;
+}
+@keyframes intro-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+.intro-caption {
+  font-family: var(--font-sora), sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  letter-spacing: 0.08em;
+  color: #0284c7;
+  text-shadow: 0 2px 10px rgba(14, 165, 233, 0.2);
+  opacity: 0;
+  animation: intro-caption-in 0.7s ease forwards;
+  animation-delay: 1.7s;
+}
+@keyframes intro-caption-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Scattered clouds that pop in after the name, then the overlay dissolves */
+.intro-extra {
+  position: absolute;
+  opacity: 0;
+  animation: intro-cloud-pop 0.7s ease-out forwards;
+  filter: drop-shadow(0 6px 12px rgba(14, 165, 233, 0.15));
+}
+@keyframes intro-cloud-pop {
+  0%   { opacity: 0; transform: rotate(var(--rot, 0deg)) translateY(12px) scale(0.6); }
+  60%  { opacity: var(--intro-op, 0.9); }
+  100% { opacity: var(--intro-op, 0.9); transform: rotate(var(--rot, 0deg)) translateY(0) scale(1); }
+}
+
+.intro-skip {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 2;
+  font-size: 0.8rem;
+  color: #64748b;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid #bae6fd;
+  border-radius: 9999px;
+  padding: 0.45rem 1.1rem;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.intro-skip:hover {
+  color: #0284c7;
+  border-color: #7dd3fc;
+}
+
+/* Respect users who prefer less motion — draw fast instead of long */
+@media (prefers-reduced-motion: reduce) {
+  .intro-cloud-path { animation-duration: 0.6s; }
+  .intro-caption { animation-delay: 0.4s; }
+}
+
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: #f0f9ff; }
 ::-webkit-scrollbar-thumb { background: #bae6fd; border-radius: 4px; }
