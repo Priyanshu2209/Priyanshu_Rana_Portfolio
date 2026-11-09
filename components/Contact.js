@@ -36,6 +36,26 @@ export default function Contact() {
     }
   };
 
+  // Force an automatic download instead of opening the PDF viewer
+  const downloadResume = async () => {
+    try {
+      const res = await fetch(profile.resume);
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Priyanshu_Rana_Resume.pdf';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error(err);
+      // Fallback: open in a new tab if the fetch fails
+      window.open(profile.resume, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   const field =
     'w-full px-4 py-3 bg-sky-50/50 border border-sky-200 rounded-lg focus:outline-none focus:border-sky-400 focus:bg-white text-ink-800 placeholder:text-ink-400 transition-colors';
 
@@ -81,11 +101,11 @@ export default function Contact() {
             </div>
             <p className="text-center text-ink-500 text-sm mb-8">{profile.location} · {profile.phone}</p>
 
-            <a href={profile.resume} target="_blank" rel="noopener noreferrer" className="btn-sketch group/btn w-full">
+            <button onClick={downloadResume} className="btn-sketch group/btn w-full">
               <CloudPuff />
               <Download size={18} />
               Download résumé
-            </a>
+            </button>
           </div>
         </div>
       </div>
