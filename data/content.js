@@ -16,7 +16,7 @@ export const sections = ['home', 'about', 'experience', 'projects', 'skills', 'c
 
 export const about = {
   paragraphs: [
-    "I'm in my final year of Computer Programming and Analysis at Seneca Polytechnic, building on an earlier Diploma in Computer Engineering. My focus is databases and data — designing clean SQL schemas, modeling relationships, and making sure the numbers people rely on are accurate.",
+    "I'm in my final year of Computer Programming and Analysis at Seneca Polytechnic, building on an earlier Diploma in Computer Engineering. My focus is databases and data - designing clean SQL schemas, modeling relationships, and making sure the numbers people rely on are accurate.",
     "Most recently, as a Data Analyst Intern at AI Financial, I built a centralized SQL Server tracking database, automated reporting with Excel Power Query and Python, and turned five years of market data into usable views. I care about clean data models, query optimization, and reporting people can trust.",
   ],
 };
@@ -63,7 +63,7 @@ export const projects = [
     tags: ['PostgreSQL', 'PL/pgSQL', 'Docker', 'Schema Design', 'Data Modeling'],
     link: 'https://github.com/Priyanshu2209/campaign-attribution-analytics',
     details:
-      "CampaignLens helps a Canadian investment firm measure which marketing campaigns actually bring in new investors and new investments — modeling conversions and ROI per campaign and channel. It's an end-to-end database design for a regulated financial business: translating business and compliance requirements into a normalized schema with enforced data-quality rules.",
+      "CampaignLens helps a Canadian investment firm measure which marketing campaigns actually bring in new investors and new investments - modeling conversions and ROI per campaign and channel. It's an end-to-end database design for a regulated financial business: translating business and compliance requirements into a normalized schema with enforced data-quality rules.",
     features: [
       'Designed a normalized PostgreSQL 17 database of 27 tables across 5 schemas modeling the full campaign → touchpoint → advisor → customer → account → investment funnel.',
       'Enforced data quality with 8 CHECK constraints, a case-insensitive unique email index, soft deletes, and a reusable PL/pgSQL trigger that maintains audit timestamps.',
@@ -72,13 +72,13 @@ export const projects = [
       'Next phase: reporting views for funnel drop-off and campaign/channel ROI, row-level security for advisor access, and Python (Pandas) analysis with charts.',
     ],
     outcomes:
-      'Demonstrates end-to-end database design for a regulated financial business — translating business and compliance requirements into a normalized schema with enforced data-quality rules, not just writing queries.',
+      'Demonstrates end-to-end database design for a regulated financial business - translating business and compliance requirements into a normalized schema with enforced data-quality rules, not just writing queries.',
   },
   {
     title: 'Blood Bank Management System',
     stack: 'SQL Server',
     description:
-      'A relational database system with 8+ tables for managing blood donations, inventory tracking, and reporting — with 20+ advanced SQL queries, ER diagrams, and structured documentation.',
+      'A relational database system with 8+ tables for managing blood donations, inventory tracking, and reporting - with 20+ advanced SQL queries, ER diagrams, and structured documentation.',
     tags: ['SQL Server', 'Database Design', 'ER Modeling'],
     link: 'https://github.com/Priyanshu2209/Blood_bank_system_database',
     details:
@@ -90,7 +90,7 @@ export const projects = [
       'Scalable design ready for future Python, MongoDB, and front-end integration.',
     ],
     outcomes:
-      'Gained hands-on experience in real-world database design, optimising storage and retrieval, and reporting through complex SQL — a foundation for expanding into Python and NoSQL (MongoDB).',
+      'Gained hands-on experience in real-world database design, optimising storage and retrieval, and reporting through complex SQL - a foundation for expanding into Python and NoSQL (MongoDB).',
   },
   {
     title: 'Online Movie Ticket Booking System',
@@ -123,7 +123,7 @@ export const skills = [
 
 export const certificates = [
   {
-    title: 'Certificate of Achievement — Data Analyst Internship',
+    title: 'Certificate of Achievement - Data Analyst Internship',
     issuer: 'AI Financial',
     date: 'May 2026',
     file: '/certificates/Priyanshu_Rana_certificate.pdf',
